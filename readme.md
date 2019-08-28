@@ -1,16 +1,24 @@
-Admin后台控制器
+### tip:    格式如下👇
 
-​	Index 控制器 index方法显示前台页面
+### 实现时间
 
-​	User 用户管理控制器 index方法显示用户列表页面 
+### 实现成员
 
-Home前台控制器
+###  命名空间/控制器/方法        效果
 
-​	Index控制器 index方法显示前台页面 login方法登录页面
 
-​	Register注册控制器 index方法显示注册页面 
 
-前台后台首页除步搭建 + 前台登录页面和注册页面
+### 实现时间 2019.8.28
+
+### 实现成员:黄宇康
+
+### Admin/ Index/index  实现后台展示页     Admin/User/index 实现用户管理展示页 
+
+### Home/Index/index 实现前台展示页    Home/index/login 实现前台登录页面
+
+### Home/Register/ index实现前台注册页面 
+
+### 前台后台首页除步搭建 + 前台登录页面和注册页面
 
 
 
