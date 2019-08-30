@@ -30,34 +30,34 @@
 
 						<div class="am-tabs" id="doc-my-tabs">
 							<ul class="am-tabs-nav am-nav am-nav-tabs am-nav-justify">
-								<li class="am-active"><a href="">邮箱注册</a></li>
-								<li><a href="">手机号注册</a></li>
+								<li class="am-active"><a href="/home/register/index">邮箱注册</a></li>
+								<li><a href="/home/register/index">手机号注册</a></li>
 							</ul>
 
 							<div class="am-tabs-bd">
 								<div class="am-tab-panel am-active">
-									<form method="post">
-										
+									<form method="post" action="/home/register/store" onsubmit="return false;">
+										{{csrf_field()}}
 							   <div class="user-email">
-										<label for="email"><i class="am-icon-envelope-o"></i></label>
-										<input type="email" name="" id="email" placeholder="请输入邮箱账号">
+										<label for="user_Email"><i class="am-icon-envelope-o"></i></label>
+										<input type="email" name="user_Email" id="user_Email" placeholder="请输入邮箱账号">
                  </div>										
                  <div class="user-pass">
-								    <label for="password"><i class="am-icon-lock"></i></label>
-								    <input type="password" name="" id="password" placeholder="设置密码">
+								    <label for="user_pwd"><i class="am-icon-lock"></i></label>
+								    <input type="password" name="user_pwd" id="user_pwd" placeholder="设置密码">
                  </div>										
                  <div class="user-pass">
-								    <label for="passwordRepeat"><i class="am-icon-lock"></i></label>
-								    <input type="password" name="" id="passwordRepeat" placeholder="确认密码">
+								    <label for="user_pwd2"><i class="am-icon-lock"></i></label>
+								    <input type="password" name="user_pwd2" id="user_pwd2" placeholder="确认密码">
                  </div>	
                  
                  </form>
                  
-								 <div class="login-links">
+								 <!-- <div class="login-links">
 										<label for="reader-me">
 											<input id="reader-me" type="checkbox"> 点击表示您同意商城《服务协议》
 										</label>
-							  	</div>
+							  	</div> -->
 										<div class="am-cf">
 											<input type="submit" name="" value="注册" class="am-btn am-btn-primary am-btn-sm am-fl">
 										</div>
@@ -85,11 +85,11 @@
 								    <input type="password" name="" id="passwordRepeat" placeholder="确认密码">
                  </div>	
 									</form>
-								 <div class="login-links">
+								<!--  <div class="login-links">
 										<label for="reader-me">
 											<input id="reader-me" type="checkbox"> 点击表示您同意商城《服务协议》
 										</label>
-							  	</div>
+							  	</div> -->
 										<div class="am-cf">
 											<input type="submit" name="" value="注册" class="am-btn am-btn-primary am-btn-sm am-fl">
 										</div>
@@ -109,7 +109,7 @@
 				</div>
 			</div>
 			
-<!-- 					<div class="footer ">
+				<!-- 	<div class="footer ">
 						<div class="footer-hd ">
 							<p>
 								<a href="# ">恒望科技</a>

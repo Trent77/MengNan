@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Home;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use DB;
 
 class RegisterController extends Controller
 {
@@ -35,7 +36,9 @@ class RegisterController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $res = $request->all();
+        dump($res);
+
     }
 
     /**

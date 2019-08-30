@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <meta name="renderer" content="webkit">
-    <title>简单实用网站后台管理系统网站模板下载_在线演示_电脑网站模板_前端模板_js代码</title>
+    <title>猛男的商城网站后台</title>
     <meta name="keywords" content="简单,实用,网站后台,后台管理,管理系统,网站模板" />
     <meta name="description" content="简单实用网站后台管理系统网站模板下载。" /> 
     <link rel="stylesheet" href="/admin/css/pintuer.css">
@@ -17,13 +17,13 @@
   <div class="logo margin-big-left fadein-top">
     <h1><img src="images/y.jpg" class="radius-circle rotate-hover" height="50" alt="" />后台管理中心</h1>
   </div>
-  <div class="head-l"><a class="button button-little bg-green" href="/home/index" target="_blank"><span class="icon-home"></span> 前台首页</a> &nbsp;&nbsp;<a class="button button-little bg-red" href="login.html"><span class="icon-power-off"></span> 退出登录</a> </div>
+  <div class="head-l"><a class="button button-little bg-green" href="/" target="_blank"><span class="icon-home"></span> 前台首页</a> &nbsp;&nbsp;<a class="button button-little bg-red" href="login.html"><span class="icon-power-off"></span> 退出登录</a> </div>
 </div>
 <div class="leftnav">
   <div class="leftnav-title"><strong><span class="icon-list"></span>菜单列表</strong></div>
   <h2><span class="icon-user"></span>基本设置</h2>
   <ul style="display:block">
-    <li><a href=/admin/user/index" target="right"><span class="icon-caret-right"></span>用户管理</a></li>
+    <li><a href="/admin/user/index" target="right"><span class="icon-caret-right"></span>用户管理</a></li>
     <!-- <li><a href="pass.html" target="right"><span class="icon-caret-right"></span>修改密码</a></li>
     <li><a href="page.html" target="right"><span class="icon-caret-right"></span>单页管理</a></li>  
     <li><a href="adv.html" target="right"><span class="icon-caret-right"></span>首页轮播</a></li>   

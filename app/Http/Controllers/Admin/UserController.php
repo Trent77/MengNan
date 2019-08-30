@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use DB;
 
 class UserController extends Controller
 {
@@ -35,7 +36,17 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //获取请求参数 
+        $data = $request->except(['_token','pwd2']);
+
+
+        if($data['pwd'] != $request->input('pwd2','')){
+            echo '两次密码不一致';die;
+        }
+
+        //传入数据库
+        $res = DB::table('members')->insert($data);
+
     }
 
     /**
