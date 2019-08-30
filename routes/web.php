@@ -23,6 +23,26 @@ Route::namespace('Admin')->prefix('admin')->group(function(){
 	//用户管理
 	//用户显示页面
 	Route::get('user/index','UserController@index');
+
+  //分类管理
+  //分类显示页面
+  Route::get('soft/index','SoftController@index');
+  //添加分类页面
+  Route::get('soft/create','SoftController@create');
+  //处理添加
+  Route::post('soft/store','SoftController@store');
+
+  //品牌管理
+  //品牌显示页面
+  Route::get('brand/index','BrandController@index');
+
+  //商品管理
+  //商品显示页面
+  Route::get('good/index','GoodController@index');
+
+
+
+
 });
 
 //=================================================================
