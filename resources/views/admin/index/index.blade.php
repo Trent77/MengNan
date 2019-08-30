@@ -7,10 +7,10 @@
     <meta name="renderer" content="webkit">
     <title>猛男的商城网站后台</title>
     <meta name="keywords" content="简单,实用,网站后台,后台管理,管理系统,网站模板" />
-    <meta name="description" content="简单实用网站后台管理系统网站模板下载。" /> 
+    <meta name="description" content="简单实用网站后台管理系统网站模板下载。" />
     <link rel="stylesheet" href="/admin/css/pintuer.css">
     <link rel="stylesheet" href="/admin/css/admin.css">
-    <script src="/admin/js/jquery.js"></script>   
+    <script src="/admin/js/jquery.js"></script>
 </head>
 <body style="background-color:#f2f9fd;">
 <div class="header bg-main">
@@ -22,26 +22,31 @@
 <div class="leftnav">
   <div class="leftnav-title"><strong><span class="icon-list"></span>菜单列表</strong></div>
   <h2><span class="icon-user"></span>基本设置</h2>
-  <ul style="display:block">
-    <li><a href="/admin/user/index" target="right"><span class="icon-caret-right"></span>用户管理</a></li>
-    <!-- <li><a href="pass.html" target="right"><span class="icon-caret-right"></span>修改密码</a></li>
-    <li><a href="page.html" target="right"><span class="icon-caret-right"></span>单页管理</a></li>  
-    <li><a href="adv.html" target="right"><span class="icon-caret-right"></span>首页轮播</a></li>   
-    <li><a href="book.html" target="right"><span class="icon-caret-right"></span>留言管理</a></li>     
-    <li><a href="column.html" target="right"><span class="icon-caret-right"></span>栏目管理</a></li> -->
-  </ul>   
-  <!-- <h2><span class="icon-pencil-square-o"></span>栏目管理</h2>
-  <ul>
-    <li><a href="list.html" target="right"><span class="icon-caret-right"></span>内容管理</a></li>
-    <li><a href="add.html" target="right"><span class="icon-caret-right"></span>添加内容</a></li>
-    <li><a href="cate.html" target="right"><span class="icon-caret-right"></span>分类管理</a></li>        
-  </ul>  --> 
+    <ul style="display:block">
+      <li><a href=/admin/user/index" target="right"><span class="icon-caret-right"></span>用户管理</a></li>
+    </ul>
+  <h2><span class="icon-user"></span>分类管理</h2>
+    <ul style="display:block">
+      <li><a href="/admin/soft/index" target="right"><span class="icon-caret-right"></span>分类管理</a></li>
+    </ul>
+  <h2><span class="icon-pencil-square-o"></span>品牌管理</h2>
+    <ul>
+      <li><a href="/admin/brand/index" target="right"><span class="icon-caret-right"></span>品牌信息</a></li>
+    </ul>
+  <h2><span class="icon-pencil-square-o"></span>商品管理</h2>
+    <ul>
+      <li><a href="/admin/good/index" target="right"><span class="icon-caret-right"></span>商品信息</a></li>
+    </ul>
+  <!-- <h2><span class="icon-pencil-square-o"></span>品牌管理</h2>
+    <ul>
+      <li><a href="/admin/brand/index" target="right"><span class="icon-caret-right"></span>品牌信息</a></li>
+    </ul> -->
 </div>
 <script type="text/javascript">
 $(function(){
   $(".leftnav h2").click(function(){
-	  $(this).next().slideToggle(200);	
-	  $(this).toggleClass("on"); 
+	  $(this).next().slideToggle(200);
+	  $(this).toggleClass("on");
   })
   $(".leftnav ul li a").click(function(){
 	    $("#a_leader_txt").text($(this).text());
