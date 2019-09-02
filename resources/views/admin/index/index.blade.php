@@ -23,7 +23,9 @@
   <div class="leftnav-title"><strong><span class="icon-list"></span>菜单列表</strong></div>
   <h2><span class="icon-user"></span>基本设置</h2>
   <ul style="display:block">
-    <li><a href=/admin/user/index" target="right"><span class="icon-caret-right"></span>用户管理</a></li>
+    <li><a href="/admin/user/index" target="right"><span class="icon-caret-right"></span>用户管理</a></li>
+    <li><a href="/admin/category/index" target="right"><span class="icon-caret-right"></span>类别管理</a></li>
+    <li><a href="/admin/order/index" target="right"><span class="icon-caret-right"></span>订单管理</a></li>
     <!-- <li><a href="pass.html" target="right"><span class="icon-caret-right"></span>修改密码</a></li>
     <li><a href="page.html" target="right"><span class="icon-caret-right"></span>单页管理</a></li>  
     <li><a href="adv.html" target="right"><span class="icon-caret-right"></span>首页轮播</a></li>   
