@@ -23,8 +23,8 @@ Route::namespace('Admin')->prefix('admin')->group(function(){
 	//用户管理
 	//用户显示页面
 	Route::get('user/index','UserController@index');
-	Route::get('/user/create','UserController@create');
-	Route::post('/user/store','UserController@store');
+	Route::get('user/create','UserController@create');
+	Route::post('user/store','UserController@store');
 	
 
 	  //分类管理
@@ -55,7 +55,7 @@ Route::get('/','Home\IndexController@index');
 //前台路由
 Route::namespace('Home')->prefix('home')->group(function(){
 	//注册页面
-	Route::get('/register/index','RegisterController@index');
+	Route::get('register/index','RegisterController@index');
 	Route::post('register/store','RegisterController@store');
 	//登录页面
 	Route::get('index/login','IndexController@login');
