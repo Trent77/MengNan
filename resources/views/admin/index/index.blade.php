@@ -36,6 +36,8 @@
   <h2><span class="icon-pencil-square-o"></span>商品管理</h2>
     <ul>
       <li><a href="/admin/good/index" target="right"><span class="icon-caret-right"></span>商品信息</a></li>
+      <li><a href="/admin/spec/create" target="right"><span class="icon-caret-right"></span>添加规格</a></li>
+      <li><a href="/admin/spec/index" target="right"><span class="icon-caret-right"></span>商品规格</a></li>
     </ul>
   <!-- <h2><span class="icon-pencil-square-o"></span>品牌管理</h2>
     <ul>

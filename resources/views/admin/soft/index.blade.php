@@ -5,6 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 <meta name="renderer" content="webkit">
+<meta name="csrf-token" content="{{ csrf_token() }}">
 <title></title>
 <link rel="stylesheet" href="/admin/css/pintuer.css">
 <link rel="stylesheet" href="/admin/css/admin.css">
@@ -13,6 +14,7 @@
 </head>
 <body>
 <form method="post" action="" id="listform">
+    {{csrf_field()}}
   <div class="panel admin-panel">
     <div class="panel-head"><strong class="icon-reorder">分类列表</strong> <a href="" style="float:right; display:none;">添加字段</a></div>
     <div class="padding border-bottom">
@@ -32,15 +34,16 @@
         <th width="310">操作</th>
       </tr>
       <volist name="list" id="vo">
+        @foreach($soft as $k=>$v)
         <tr>
           <td style="text-align:left; padding-left:20px;"><input type="checkbox" name="id[]" value="" />
         </td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td><div class="button-group"> <a class="button border-main" href="add.html"><span class="icon-edit"></span> 修改</a> <a class="button border-red" href="javascript:void(0)" onclick="return del(1,1,1)"><span class="icon-trash-o"></span> 删除</a> </div></td>
+          <td>{{$v->id}}</td>
+          <td>{{$v->name}}</td>
+          <td>{{$v->created_at}}</td>
+          <td><div class="button-group"> <a  class="button border-main" href="/admin/soft/add/{{$v->id}}"><span class="icon-edit"></span> 修改</a> <a  class="button border-red" href="/admin/soft/del/{{$v->id}}"><span class="icon-trash-o"></span> 删除</a> </div></td>
         </tr>
-
+        @endforeach
       <tr>
     </table>
 
@@ -53,12 +56,6 @@ function changesearch(){
 
 }
 
-//单个删除
-function del(id,mid,iscid){
-	if(confirm("您确定要删除吗?")){
-
-	}
-}
 
 //全选
 $("#checkall").click(function(){

@@ -14,13 +14,13 @@
 </head>
 <body>
 <div class="panel admin-panel">
-  <div class="panel-head" id="add"><strong><span class="icon-pencil-square-o"></span>增加分类</strong></div>
+  <div class="panel-head" id="add"><strong><span class="icon-pencil-square-o"></span>增加品牌</strong></div>
   <div class="body-content">
     <form method="post" class="form-x" action="/admin/soft/store" onsubmit="return false">
       {{csrf_field()}}
       <div class="form-group">
         <div class="label">
-          <label>分类名称：</label>
+          <label>品牌名称：</label>
         </div>
         <div class="field">
           <input type="text" id='i1' class="input w50" value="" name="name"  />
@@ -28,8 +28,23 @@
         </div>
       </div>
 
+      <div class="form-group">
+        <div class="label">
+          <label>选择分类:</label>
+        </div>
         <div class="field">
-          <button class="button bg-main icon-check-square-o" type="submit"> 提交</button>
+          <!-- <input type="text" id='i1' class="input w50" value="" name="name"  /> -->
+          <select id="ss" name="softs_id" class="input w50">
+            @foreach($soft as $k=>$v)
+            <option value="{{$v->id}}">{{$v->name}}</option>
+            @endforeach
+          </select>
+          <div class="tips"></div>
+        </div>
+      </div>
+
+        <div class="field">
+          <button class="button bg-main icon-check-square-o" type="submit">提交</button>
         </div>
       </div>
     </form>
@@ -44,7 +59,9 @@
 </body>
 <script type="text/javascript">
   $('button').on('click',function(){
-    var data = $('#i1').val();
+    var name = $('#i1').val();
+    var softs_id = $('#ss').val();
+    console.log(name,softs_id);
     $.ajaxSetup({
     headers: {
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -52,9 +69,9 @@
     });
 
     $.ajax({
-        url:'/admin/soft/store',
+        url:'/admin/brand/store',
         type:'post',
-        data:{'name':data},
+        data:{'name':name,'softs_id':softs_id},
         success:function(res){
           alert(res);
         },
