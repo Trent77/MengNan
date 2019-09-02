@@ -26,9 +26,11 @@
     <li><a href=/admin/user/index" target="right"><span class="icon-caret-right"></span>用户管理</a></li>
     <!-- <li><a href="pass.html" target="right"><span class="icon-caret-right"></span>修改密码</a></li>
     <li><a href="page.html" target="right"><span class="icon-caret-right"></span>单页管理</a></li>  
-    <li><a href="adv.html" target="right"><span class="icon-caret-right"></span>首页轮播</a></li>   
+       
     <li><a href="book.html" target="right"><span class="icon-caret-right"></span>留言管理</a></li>     
     <li><a href="column.html" target="right"><span class="icon-caret-right"></span>栏目管理</a></li> -->
+    <li><a href="/admin/banner/index" target="right"><span class="icon-caret-right"></span>首页轮播</a></li>
+    <li><a href="/admin/banner/index" target="right"><span class="icon-caret-right"></span>文章管理</a></li>
   </ul>   
   <!-- <h2><span class="icon-pencil-square-o"></span>栏目管理</h2>
   <ul>
