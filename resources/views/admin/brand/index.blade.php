@@ -17,7 +17,7 @@
     <div class="panel-head"><strong class="icon-reorder">品牌列表</strong> <a href="" style="float:right; display:none;">添加字段</a></div>
     <div class="padding border-bottom">
       <ul class="search" style="padding-left:10px;">
-        <li> <a class="button border-main icon-plus-square-o" href="/admin/spec/create"> 添加品牌</a> </li>
+        <li> <a class="button border-main icon-plus-square-o" href="/admin/brand/create"> 添加品牌</a> </li>
           <input type="text" placeholder="请输入搜索关键字" name="keywords" class="input" style="width:250px; line-height:17px;display:inline-block" />
           <a href="javascript:void(0)" class="button border-main icon-search" onclick="changesearch()" > 搜索</a></li>
       </ul>

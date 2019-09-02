@@ -14,22 +14,22 @@
 </head>
 <body>
 <div class="panel admin-panel">
-  <div class="panel-head" id="add"><strong><span class="icon-pencil-square-o"></span>增加分类</strong></div>
+  <div class="panel-head" id="add"><strong><span class="icon-pencil-square-o"></span>增加商品</strong></div>
   <div class="body-content">
-    <form method="post" class="form-x" action="/admin/soft/store" onsubmit="return false">
+    <form method="post" class="form-x" action="/admin/good/store" onsubmit="return false">
       {{csrf_field()}}
       <div class="form-group">
         <div class="label">
-          <label>分类名称：</label>
+          <label>商品名称</label>
         </div>
         <div class="field">
-          <input type="text" id='i1' class="input w50" value="" name="name"  />
+          <input type="text" id='i1' class="input w50" value="" name="name" />
           <div class="tips"></div>
         </div>
       </div>
 
         <div class="field">
-          <button class="button bg-main icon-check-square-o" type="submit"> 提交</button>
+          <button class="button bg-main icon-check-square-o" type="submit">提交</button>
         </div>
       </div>
     </form>
@@ -52,7 +52,7 @@
     });
 
     $.ajax({
-        url:'/admin/soft/store',
+        url:'/admin/good/store',
         type:'post',
         data:{'name':data},
         success:function(res){

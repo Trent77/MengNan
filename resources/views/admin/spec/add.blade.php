@@ -14,51 +14,48 @@
 </head>
 <body>
 <div class="panel admin-panel">
-  <div class="panel-head" id="add"><strong><span class="icon-pencil-square-o"></span>增加分类</strong></div>
+  <div class="panel-head" id="add"><strong><span class="icon-pencil-square-o"></span>添加规格</strong></div>
   <div class="body-content">
-    <form method="post" class="form-x" action="/admin/soft/store" onsubmit="return false">
+    <form method="post" class="form-x" action="" onsubmit="return false">
       {{csrf_field()}}
+      <input type="hidden" id="id" name="name" value="">
       <div class="form-group">
         <div class="label">
-          <label>分类名称：</label>
+          <label>规格名:</label>
         </div>
         <div class="field">
-          <input type="text" id='i1' class="input w50" value="" name="name"  />
-          <div class="tips"></div>
+          @foreach($spec as $k=>$v)
+            {{$v->name}}<input type="checkbox" name="" value="{{$v->id}}">
+          @endforeach
         </div>
       </div>
-
-        <div class="field">
-          <button class="button bg-main icon-check-square-o" type="submit"> 提交</button>
-        </div>
-      </div>
+    </div>
     </form>
   </div>
 </div>
-<h1>
-    <div class="alert alert-danger">
-        <ul id="show_errors"></ul>
-    </div>
-</h1>
 
-</body>
+</body></html>
 <script type="text/javascript">
-  $('button').on('click',function(){
-    var data = $('#i1').val();
+  $('#bb').on('click',function(){
     $.ajaxSetup({
     headers: {
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
     }
     });
-
+    name = $('#tt').val();
+    id = $('#id').val();
+    console.log(id);
     $.ajax({
-        url:'/admin/soft/store',
-        type:'post',
-        data:{'name':data},
-        success:function(res){
+      url:'/admin/soft/edit',
+      type:'post',
+      data:{'name':name,'id':id},
+      success:function(res){
+        if(res == 'ok'){
+          alert('修改成功');
+        }else{
           alert(res);
-        },
+        }
+      }
     });
   })
 </script>
-</html>

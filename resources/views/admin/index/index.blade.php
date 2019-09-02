@@ -23,7 +23,7 @@
   <div class="leftnav-title"><strong><span class="icon-list"></span>菜单列表</strong></div>
   <h2><span class="icon-user"></span>基本设置</h2>
     <ul style="display:block">
-      <li><a href=/admin/user/index" target="right"><span class="icon-caret-right"></span>用户管理</a></li>
+      <li><a href="/admin/user/index" target="right"><span class="icon-caret-right"></span>用户管理</a></li>
     </ul>
   <h2><span class="icon-user"></span>分类管理</h2>
     <ul style="display:block">
@@ -36,6 +36,8 @@
   <h2><span class="icon-pencil-square-o"></span>商品管理</h2>
     <ul>
       <li><a href="/admin/good/index" target="right"><span class="icon-caret-right"></span>商品信息</a></li>
+      <li><a href="/admin/spec/create" target="right"><span class="icon-caret-right"></span>添加规格</a></li>
+      <li><a href="/admin/spec/index" target="right"><span class="icon-caret-right"></span>商品规格</a></li>
     </ul>
   <!-- <h2><span class="icon-pencil-square-o"></span>品牌管理</h2>
     <ul>
