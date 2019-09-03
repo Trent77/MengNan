@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use DB;
+use Hash;
 
 class UserController extends Controller
 {
@@ -12,9 +14,15 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('admin.user.index');
+        // 接受参数
+        // $keywords = $request->input('keywords','');
+        // $data = DB::table('users')->where('name','like','%'.$keywords.'%')->paginate(3);
+        $data = DB::table('members')->paginate(5);
+        // return view('admin.user.index',['data'=>$data,'keywords'=>$keywords]);
+        // dd($data);
+        return view('admin.user.index',['data'=>$data]);
     }
 
     /**
@@ -35,7 +43,44 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //获取请求参数 
+        $data = $request->except(['_token','profile','pwd2']);
+
+        //验证数据
+        if(empty($data['name'])){
+            echo '用户名必填';die;
+        }
+
+        if(empty($data['pwd'])){
+            echo '密码必填';die;
+        }
+
+        if($data['pwd'] != $request->input('pwd2','')){
+            echo '两次密码不一致';die;
+        }
+
+        // 文件上传
+        if( $request->hasFile('profile') ){
+            //有就上传
+            $path = $request->file('profile')->store(date('Ymd'));
+        }else{
+            $path = '';
+        }
+        $data['profile'] = $path;
+
+        $time = date('Y-m-d H:i:s');
+        $data['created_at'] = $time;
+        $data['updated_at'] = $time;
+
+        //密码加密
+        $data['pwd'] = Hash::make($data['pwd']);
+
+        //传入数据库
+        $res = DB::table('members')->insert($data);
+        if(!$res){
+            return back()->with('添加失败');
+        }
+        return redirect('/admin/user/index')->with('添加成功');
     }
 
     /**
@@ -57,7 +102,9 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data = DB::table('members')->where('id',$id)->first();
+        //显示修改页面
+        return view('admin.user.edit',['data'=>$data]);
     }
 
     /**
