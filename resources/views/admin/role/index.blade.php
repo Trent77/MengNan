@@ -14,38 +14,41 @@
 <body>
 <form method="post" action="" id="listform">
   <div class="panel admin-panel">
-    <div class="panel-head"><strong class="icon-reorder">管理员列表</strong> <a href="" style="float:right; display:none;">添加字段</a></div>
+    <div class="panel-head"><strong class="icon-reorder">角色列表</strong> <a href="" style="float:right; display:none;">添加字段</a></div>
+    @if ($errors->any())
+	    <div class="alert alert-danger">
+	        <ul>
+	            @foreach ($errors->all() as $error)
+	                <li>{{ $error }}</li>
+	            @endforeach
+	        </ul>
+	    </div>
+	@endif
 	<!-- <form action="/admin/member/index" method="get"> -->
     <div class="padding border-bottom">
       <ul class="search" style="padding-left:10px;">
-        <li> <a class="button border-main icon-plus-square-o" href="/admin/user/create"> 添加管理员</a> </li>          
-       <!--  <form action="/admin/user/index" method="get">
-        	管理员名称：<input type="text" placeholder="请输入管理员名称" name="keyword"  class="input" style="width:250px; line-height:17px;display:inline-block" />
-			<input type="submit" value="搜索">
-		</form> -->
+        <li> <a class="button border-main icon-plus-square-o" href="/admin/role/create"> 添加角色</a> </li>
+          <!-- 用户名：<input type="text" placeholder="请输入搜索关键字" name="keyword" class="input" style="width:250px; line-height:17px;display:inline-block" />
+        <input type="submit" value="搜索"> -->
       </ul>
     </div>
 	<!-- </form> -->
     <table class="table table-hover text-center">
       <tr>
         <th>ID</th>
-        <th>管理员名称</th>
-        <th>邮箱</th>
-        <th>注册时间</th>
+        <th>角色名称</th>
         <th>操作</th>
       </tr>
       <volist name="list" id="vo">
-		@foreach($data as $k=>$v)
+		@foreach($role as $k=>$v)
         <tr>
           <td>{{ $v->id }}</td>
 		  <td>{{$v->name}}</td>
-          <td>{{$v->email}}</td>
-          <td>{{$v->created_at}}</td>
           <td>
           	<div class="button-group">
-          		<a class="button border-main" style="background-color:pink;" href="/admin/user/rolelist/{{$v->id}}"><span class="icon-edit"></span> 角色分配</a>
-          		<a class="button border-main" href="/admin/user/edit/{{$v->id}}"><span class="icon-edit"></span> 修改</a>
-           		<a class="button border-red" href="/admin/user/destroy/{{$v->id}}"><span class="icon-trash-o"></span> 删除</a>
+          		<a class="button border-main" style="background-color:pink;" href="/admin/role/auth/{{$v->id}}"><span class="icon-edit"></span> 权限分配</a>
+          		<a class="button border-main" href="/admin/role/edit/{{$v->id}}"><span class="icon-edit"></span> 修改</a>
+           		<a class="button border-red" href="/admin/role/destroy/{{$v->id}}"><span class="icon-trash-o"></span> 删除</a>
           	</div>
           </td>
         </tr>
@@ -53,7 +56,7 @@
       </tr>
 		@endforeach
     </table>
- 	{{$data->links()}}
+ 	{{$role->links()}}
   </div>
 </form>
 

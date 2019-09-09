@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <meta name="renderer" content="webkit">
-    <title>修改管理员</title>  
+    <title>修改权限</title>  
     <link rel="stylesheet" href="/admin/css/pintuer.css">
     <link rel="stylesheet" href="/admin/css/admin.css">
     <script src="/admin/js/jquery.js"></script>
@@ -13,25 +13,34 @@
 </head>
 <body>
 <div class="panel admin-panel">
-  <div class="panel-head"><strong><span class="icon-pencil-square-o"></span>修改管理员</strong></div>
+  <div class="panel-head"><strong><span class="icon-pencil-square-o"></span>修改权限</strong></div>
   <div class="body-content">
-    <form method="post" class="form-x" action="/admin/user/update/{{$data->id}}" enctype="multipart/form-data">
+    <form method="post" class="form-x" action="/admin/node/update/{{$data->id}}" enctype="multipart/form-data">
       {{csrf_field()}}
       <div class="form-group">
         <div class="label">
-          <label for="name">用户名：</label>
+          <label for="name">权限名称：</label>
         </div>
         <div class="field">
-          <input type="text" id="name" class="input" name="name" value="{{$data->name}}"/>
+          <input type="text" id="name" class="input" name="name" value="{{$data->name}}" />
           <div class="tips"></div>
         </div>
       </div>
       <div class="form-group">
         <div class="label">
-          <label for="email">邮箱：</label>
+          <label for="mname">控制器：</label>
         </div>
         <div class="field">
-          <input type="text" id="email" class="input" name="email" value="{{$data->email}}" />
+          <input type="text" id="mname" class="input" name="mname" value="{{$data->mname}}" />
+          <div class="tips"></div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="label">
+          <label for="aname">方法：</label>
+        </div>
+        <div class="field">
+          <input type="text" id="aname" class="input" name="aname" value="{{$data->aname}}" />
           <div class="tips"></div>
         </div>
       </div>

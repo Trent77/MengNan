@@ -14,17 +14,15 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
         // 接受参数
-        // $keywords = $request->input('keywords','');
-        // $data = DB::table('users')->where('name','like','%'.$keywords.'%')->paginate(3);
-        $data = DB::table('members')->paginate(5);
-        // return view('admin.user.index',['data'=>$data,'keywords'=>$keywords]);
-        // dd($data);
+        // $keyword = $request->input('keyword','');
+
+        $data = DB::table('admin_user')->paginate(5);
         return view('admin.user.index',['data'=>$data]);
     }
-
+    
     /**
      * Show the form for creating a new resource.
      *
@@ -43,44 +41,36 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //获取请求参数 
-        $data = $request->except(['_token','profile','pwd2']);
+         //获取请求参数
+        $data = $request->except(['_token','password2']);
 
         //验证数据
         if(empty($data['name'])){
             echo '用户名必填';die;
         }
 
-        if(empty($data['pwd'])){
+        if(empty($data['password'])){
             echo '密码必填';die;
         }
 
-        if($data['pwd'] != $request->input('pwd2','')){
+        if($data['password'] != $request->input('password2','')){
             echo '两次密码不一致';die;
         }
-
-        // 文件上传
-        if( $request->hasFile('profile') ){
-            //有就上传
-            $path = $request->file('profile')->store(date('Ymd'));
-        }else{
-            $path = '';
-        }
-        $data['profile'] = $path;
 
         $time = date('Y-m-d H:i:s');
         $data['created_at'] = $time;
         $data['updated_at'] = $time;
 
         //密码加密
-        $data['pwd'] = Hash::make($data['pwd']);
+        $data['password'] = Hash::make($data['password']);
 
         //传入数据库
-        $res = DB::table('members')->insert($data);
+        $res = DB::table('admin_user')->insert($data);
         if(!$res){
-            return back()->with('添加失败');
+            return back()->with('error','添加失败');
         }
-        return redirect('/admin/user/index')->with('添加成功');
+
+        return redirect('/admin/user/index')->with('success','添加成功');
     }
 
     /**
@@ -102,7 +92,8 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        $data = DB::table('members')->where('id',$id)->first();
+        $data = DB::table('admin_user')->where('id',$id)->first();
+
         //显示修改页面
         return view('admin.user.edit',['data'=>$data]);
     }
@@ -116,7 +107,19 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        //接收参数
+        $data = $request->except(['_token']);
+
+        //先查出数据
+        $user = DB::table('admin_user')->where('id',$id)->first();
+
+        //修改
+        $res = DB::table('admin_user')->where('id',$id)->update($data);
+        if(!$res){
+            return back()->with('error','修改失败');
+        }
+
+        return redirect('/admin/user/index')->with('success','添加成功');
     }
 
     /**
@@ -127,6 +130,62 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        // 查出数据
+        $user = DB::table('admin_user')->where('id',$id)->first();
+
+        // 删除
+        $res = DB::table('admin_user')->where('id',$id)->delete();
+        if($res === false){
+            return back()->with('error','删除失败');
+        }
+
+        return redirect('/admin/user/index')->with('success','删除成功');
+    }
+
+    /*
+        角色分配
+     */
+    public function rolelist($id)
+    {
+        // 获取管理员数据
+        $user = DB::table('admin_user')->where('id',$id)->first();
+
+        //获取所有的角色信息
+        $role=DB::table("role")->get();
+
+        //获取当前管理员所具有的角色信息
+        $data=DB::table("user_role")->where("uid",$id)->get();
+        if(count($data)){
+            //遍历
+            foreach($data as $v){
+                $rids[]=$v->rid;
+            }
+        // 角色分配页面
+        return view('/admin/user/rolelist',['user'=>$user,'role'=>$role,'rids'=>$rids]);
+    }else{
+        //加载角色分配模板
+        return view('/admin/user/rolelist',['user'=>$user,'role'=>$role,'rids'=>array()]);
+    }
+}
+
+    /*
+        保存角色
+     */
+    public function saverole(Request $request){
+        // var_dump($request->all());
+        //获取新角色id
+        $role=$_POST['rids'];
+        //获取管理员id
+        $uid=$request->input('uid');
+        //把用户已有角色信息删除
+        DB::table("user_role")->where("uid",$uid)->delete();
+        //遍历
+        foreach($role as $v){
+            //封装需要插入user_role 数据表数据
+            $data['uid']=$uid;//管理员id
+            $data['rid']=$v;
+            DB::table("user_role")->insert($data);
+        }
+        return redirect("/admin/user/index")->with("success","角色分配成功");
     }
 }

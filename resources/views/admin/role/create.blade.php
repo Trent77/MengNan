@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <meta name="renderer" content="webkit">
-    <title>添加管理员</title>  
+    <title>添加角色</title>  
     <link rel="stylesheet" href="/admin/css/pintuer.css">
     <link rel="stylesheet" href="/admin/css/admin.css">
     <script src="/admin/js/jquery.js"></script>
@@ -13,9 +13,9 @@
 </head>
 <body>
 <div class="panel admin-panel">
-  <div class="panel-head"><strong><span class="icon-pencil-square-o"></span>添加管理员</strong></div>
+  <div class="panel-head"><strong><span class="icon-pencil-square-o"></span>添加角色</strong></div>
   <div class="body-content">
-    <form method="post" class="form-x" action="/admin/user/store" enctype="multipart/form-data">
+    <form method="post" class="form-x" action="/admin/role/store" enctype="multipart/form-data">
       {{csrf_field()}}
       <div class="form-group">
         <div class="label">
@@ -26,31 +26,6 @@
           <div class="tips"></div>
         </div>
       </div>
-      <div class="form-group">
-        <div class="label">
-          <label for="email">邮箱：</label>
-        </div>
-        <div class="field">
-          <input type="text" id="email" class="input" name="email" value="" />
-          <div class="tips"></div>
-        </div>
-      </div>
-      <div class="form-group">
-        <div class="label">
-          <label for="password">密码：</label>
-        </div>
-        <div class="field">
-          <input type="password" id="password" class="input" name="password" value="" /> 
-        </div>
-      </div>
-      <div class="form-group">
-        <div class="label">
-          <label for="password2">确认密码：</label>
-        </div>
-        <div class="field">
-          <input type="password" id="password2" class="input" name="password2" value="" />
-        </div>
-      </div>
         <div class="field">
           <button class="button bg-main icon-check-square-o" type="submit"> 提交</button>
         </div>
@@ -58,16 +33,14 @@
     </form>
   </div>
 </div>
-  <script type="text/javascript">
+<!--   <script type="text/javascript">
   $('button[type=submit]').on('click',function(){
     let formData = new FormData();
     formData.append('name',$('#name').val());
-    formData.append('email',$('#email').val());
-    formData.append('password',$('#password').val());
-    formData.append('password2',$('#password2').val());
+
     
     $.ajax({
-      url:'/admin/user/store',
+      url:'/admin/role/store',
       type:'post',
       data:formData,
       contentType:false,
@@ -81,6 +54,6 @@
       }
     });
   });
-  </script>
+  </script> -->
 </body>
 </html>
