@@ -72,6 +72,7 @@ Route::group(['namespace'=>'Admin','prefix'=>'admin','middleware'=>'login'],func
 	// 删
 	Route::get('node/destroy/{id}','NodeController@destroy');
 
+<<<<<<< HEAD
 
 	//会员显示页面
 	Route::get('member/index','MemberController@index');
@@ -83,7 +84,38 @@ Route::group(['namespace'=>'Admin','prefix'=>'admin','middleware'=>'login'],func
 	Route::post('member/update/{id}','MemberController@update');
 	// 删
 	Route::get('member/destroy/{id}','MemberController@destroy');
+=======
+	//用户管理
+	//用户显示页面
+	Route::get('user/index','UserController@index');
+	//用户注册页面
+	Route::get('user/create','UserController@create');
+	Route::post('user/store','UserController@store');
+	//分类管理
+	//分类列表
+	Route::get('category/index','CategoryController@index');
+	//添加分类
+	Route::post('category/store','CategoryController@store');
+	// 修改分类
+	Route::get('category/edit/{id}','CategoryController@edit');
+	Route::post('category/update/{id}','CategoryController@update');
+	//删除
+	Route::get('category/destroy/{id}','CategoryController@destroy');
 
+	//订单管理,订单列表
+	Route::get('order/index','OrderController@index');
+>>>>>>> 8ea31374e1b16d1a1275f695fc77d4150e01897e
+
+	//轮播图显示
+	Route::get('banner/index','BannerController@index'); 
+	//轮播图添加页面
+	Route::get('banner/create','BannerController@create');
+	//轮播图修改页面
+	Route::get('banner/edit','BannerController@edit');
+	Route::post('banner/store','BannerController@store');
+	Route::get('banner/edit/{id}','BannerController@edit');
+	Route::post('banner/update/{id}','BannerController@update');
+	Route::get('banner/destroy/{id}','BannerController@destroy');
 
 	  //分类管理
 	  //分类显示页面
