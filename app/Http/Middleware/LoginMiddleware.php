@@ -15,7 +15,7 @@ class LoginMiddleware
      */
     public function handle($request, Closure $next)
     {
-<<<<<<< HEAD
+
         // 登录验证
         if(!session('user')){
             return redirect('/admin/login');
@@ -37,9 +37,5 @@ class LoginMiddleware
         }
         
         return $next($request);
-=======
-                return $next($request);
-        
->>>>>>> 8ea31374e1b16d1a1275f695fc77d4150e01897e
     }
 }

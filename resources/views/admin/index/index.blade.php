@@ -27,7 +27,7 @@
   <div class="leftnav-title"><strong><span class="icon-list"></span>菜单列表</strong></div>
   <h2><span class="icon-user"></span>管理员管理</h2>
     <ul style="display:block">
-<<<<<<< HEAD
+
       <li><a href="/admin/user/index" target="right"><span class="icon-caret-right"></span>管理员管理</a></li>
       <li><a href="/admin/role/index" target="right"><span class="icon-caret-right"></span>角色管理</a></li>
       <li><a href="/admin/node/index" target="right"><span class="icon-caret-right"></span>权限管理</a></li>
@@ -35,13 +35,10 @@
   <h2><span class="icon-user"></span>会员管理</h2>
     <ul style="display:block">
       <li><a href="/admin/member/index" target="right"><span class="icon-caret-right"></span>会员管理</a></li>
-=======
-      <li><a href="/admin/user/index" target="right"><span class="icon-caret-right"></span>用户管理</a></li>
       <li><a href="/admin/banner/index" target="right"><span class="icon-caret-right"></span>首页轮播</a></li>
     <li><a href="/admin/banner/index" target="right"><span class="icon-caret-right"></span>文章管理</a></li>
      <li><a href="/admin/category/index" target="right"><span class="icon-caret-right"></span>类别管理</a></li>
     <li><a href="/admin/order/index" target="right"><span class="icon-caret-right"></span>订单管理</a></li>
->>>>>>> 8ea31374e1b16d1a1275f695fc77d4150e01897e
     </ul>
   <h2><span class="icon-user"></span>分类管理</h2>
     <ul style="display:block">

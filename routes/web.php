@@ -72,8 +72,6 @@ Route::group(['namespace'=>'Admin','prefix'=>'admin','middleware'=>'login'],func
 	// 删
 	Route::get('node/destroy/{id}','NodeController@destroy');
 
-<<<<<<< HEAD
-
 	//会员显示页面
 	Route::get('member/index','MemberController@index');
 	// 增
@@ -84,13 +82,7 @@ Route::group(['namespace'=>'Admin','prefix'=>'admin','middleware'=>'login'],func
 	Route::post('member/update/{id}','MemberController@update');
 	// 删
 	Route::get('member/destroy/{id}','MemberController@destroy');
-=======
-	//用户管理
-	//用户显示页面
-	Route::get('user/index','UserController@index');
-	//用户注册页面
-	Route::get('user/create','UserController@create');
-	Route::post('user/store','UserController@store');
+
 	//分类管理
 	//分类列表
 	Route::get('category/index','CategoryController@index');
@@ -104,7 +96,7 @@ Route::group(['namespace'=>'Admin','prefix'=>'admin','middleware'=>'login'],func
 
 	//订单管理,订单列表
 	Route::get('order/index','OrderController@index');
->>>>>>> 8ea31374e1b16d1a1275f695fc77d4150e01897e
+
 
 	//轮播图显示
 	Route::get('banner/index','BannerController@index'); 
