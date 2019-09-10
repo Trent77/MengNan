@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home/index/index');
     // return redirect('home/index/index');
 });
 
@@ -186,4 +186,5 @@ Route::group(['namespace'=>'Home','prefix'=>'home'],function(){
 	Route::post('register/store','RegisterController@store');
 	//登录页面
 	Route::get('index/login','IndexController@login');
+
 });

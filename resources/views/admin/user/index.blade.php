@@ -19,10 +19,7 @@
     <div class="padding border-bottom">
       <ul class="search" style="padding-left:10px;">
         <li> <a class="button border-main icon-plus-square-o" href="/admin/user/create"> 添加管理员</a> </li>          
-       <!--  <form action="/admin/user/index" method="get">
-        	管理员名称：<input type="text" placeholder="请输入管理员名称" name="keyword"  class="input" style="width:250px; line-height:17px;display:inline-block" />
-			<input type="submit" value="搜索">
-		</form> -->
+       		
       </ul>
     </div>
 	<!-- </form> -->
@@ -54,12 +51,17 @@
  	{{$data->links()}}
   </div>
 </form>
-
-<!-- <script type="text/javascript">
+<!-- 
+<script type="text/javascript">
 
 //搜索
 function changesearch(){
-
+	var keywords = $('#keywords').val();
+	$.ajax({
+		type:'get',
+		url:'/admin/user/index',
+		data:{'keywords':keywords},
+	})
 }
 
 //单个删除
@@ -227,7 +229,7 @@ function changecopy(o){
 	}
 }
 
-</script> -->
-
+</script>
+ -->
 </body>
 </html>

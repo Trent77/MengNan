@@ -36,8 +36,7 @@ class RegisterController extends Controller
      */
     public function store(Request $request)
     {
-        $res = $request->all();
-        dump($res);
+        
 
     }
 
