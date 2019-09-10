@@ -26,6 +26,16 @@
           <input type="text" id='i1' class="input w50" value="" name="name" />
           <div class="tips"></div>
         </div>
+        <div class="label">
+          <label>所属分类</label>
+        </div>
+        <div class="field">
+          <select class="input" id="i2" style="width:25%;">
+              @foreach($soft as $k=>$v)
+              <option value="{{$v->id}}">{{$v->name}}</option>
+              @endforeach
+          </select>
+        </div>
       </div>
 
         <div class="field">
@@ -44,7 +54,8 @@
 </body>
 <script type="text/javascript">
   $('button').on('click',function(){
-    var data = $('#i1').val();
+    var name = $('#i1').val();
+    var soft_id = $('#i2').val();
     $.ajaxSetup({
     headers: {
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -54,9 +65,10 @@
     $.ajax({
         url:'/admin/good/store',
         type:'post',
-        data:{'name':data},
+        data:{'name':name,'soft_id':soft_id},
         success:function(res){
           alert(res);
+          window.location.href='/admin/good/index';
         },
     });
   })

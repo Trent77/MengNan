@@ -31,7 +31,6 @@
         <th>ID</th>
         <th>管理员名称</th>
         <th>邮箱</th>
-        <th>注册时间</th>
         <th>操作</th>
       </tr>
       <volist name="list" id="vo">
@@ -40,7 +39,6 @@
           <td>{{ $v->id }}</td>
 		  <td>{{$v->name}}</td>
           <td>{{$v->email}}</td>
-          <td>{{$v->created_at}}</td>
           <td>
           	<div class="button-group">
           		<a class="button border-main" style="background-color:pink;" href="/admin/user/rolelist/{{$v->id}}"><span class="icon-edit"></span> 角色分配</a>

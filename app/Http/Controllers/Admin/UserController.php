@@ -57,10 +57,6 @@ class UserController extends Controller
             echo '两次密码不一致';die;
         }
 
-        $time = date('Y-m-d H:i:s');
-        $data['created_at'] = $time;
-        $data['updated_at'] = $time;
-
         //密码加密
         $data['password'] = Hash::make($data['password']);
 
