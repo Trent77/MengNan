@@ -9,9 +9,10 @@
 		<meta name="format-detection" content="telephone=no">
 		<meta name="renderer" content="webkit">
 		<meta http-equiv="Cache-Control" content="no-siteapp" />
-
 		<link rel="stylesheet" href="/home/AmazeUI-2.4.2/assets/css/amazeui.css" />
+		<script type="text/javascript" src="/home/js/jquery.js"></script>
 		<link href="/home/css/dlstyle.css" rel="stylesheet" type="text/css">
+		<meta name="csrf-token" content="{{ csrf_token() }}">
 	</head>
 
 	<body>
@@ -30,27 +31,30 @@
 							<div class="clear"></div>
 						
 						<div class="login-form">
-						  <form>
+						  <form action="/home/register/login" method="post" onsubmit="return false">
+                	{{csrf_field()}}
+
 							   <div class="user-name">
 								    <label for="user"><i class="am-icon-user"></i></label>
-								    <input type="text" name="" id="user" placeholder="邮箱/手机/用户名">
+								    <input type="text" name="user" id="user" placeholder="邮箱/手机/用户名">
                  </div>
                  <div class="user-pass">
 								    <label for="password"><i class="am-icon-lock"></i></label>
-								    <input type="password" name="" id="password" placeholder="请输入密码">
+								    <input type="password" name="pwd" id="pwd" placeholder="请输入密码">
                  </div>
+
+                 <div class="am-cf">
+									<input type="submit" name="" id="dl" value="登 录" class="am-btn am-btn-primary am-btn-sm">
+								</div>
               </form>
            </div>
-            
             <div class="login-links">
                 <label for="remember-me"><input id="remember-me" type="checkbox">记住密码</label>
 								<a href="#" class="am-fr">忘记密码</a>
 								<a href="/home/register/index" class="zcnext am-fr am-btn-default">注册</a>
 								<br />
             </div>
-								<div class="am-cf">
-									<input type="submit" name="" value="登 录" class="am-btn am-btn-primary am-btn-sm">
-								</div>
+								
 						<div class="partner">		
 								<h3>合作账号</h3>
 							<div class="am-btn-group">
@@ -63,6 +67,50 @@
 				</div>
 			</div>
 		</div>
+		<script >
+				$("#dl").click( function () {
+
+						name = $('#user').val();
+						pwd = $('#pwd').val();
+
+					if(pwd == ""){//密码为空的情况下输入以下代码
+						alert ("请输入密码");return false;
+					}
+
+					if(name == ""){//用户名为空的情况下输入以下代码
+						alert ("请输入用户名");return false;
+					}
+
+					$.ajaxSetup({
+					    headers: {
+					        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+					    }
+					});
+
+					$.ajax({
+						type:'post',//提交方式
+						dataType:'json',//数据类型
+						data:{'name':name,'pwd':pwd},//提交的数据
+						url:'/home/register/login',//提交的地址
+						success:function(res){//返回值的方法用res接收
+							if(res.error==1){
+								alert(res.msg);//msg在控制器里面已经定义
+							}else if(res.error == 0){
+								alert(res.msg);
+								window.location = '/';
+							}
+						}
+					})
+					
+
+
+			}); 
+
+
+			
+			
+		</script>
+
 
 <!-- 
 					<div class="footer ">
