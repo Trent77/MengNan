@@ -11,6 +11,7 @@
 |
 */
 
+
 Route::get('/', function () {
     return view('welcome');
     // return redirect('home/index/index');
@@ -196,6 +197,8 @@ Route::group(['namespace'=>'Admin','prefix'=>'admin','middleware'=>'login'],func
 //前台首页
 Route::get('/','Home\IndexController@index');
 
+Route::get('/sms','Home\RegisterController@sms');
+
 //前台路由
 Route::group(['namespace'=>'Home','prefix'=>'home'],function(){
 	//注册页面
@@ -203,6 +206,15 @@ Route::group(['namespace'=>'Home','prefix'=>'home'],function(){
 	Route::post('register/store','RegisterController@store');
 	//登录页面
 	Route::get('index/login','IndexController@login');
+
 	//轮播图
 	Route::get('index/index','IndexController@index');
+
+	//邮箱注册
+	Route::post('register/index','RegisterController@store');
+	//手机注册
+	Route::post('register/phone','RegisterController@phone');
+	//登录
+	Route::post('register/login','RegisterController@login');
+
 });
