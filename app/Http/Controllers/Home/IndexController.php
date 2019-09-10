@@ -14,9 +14,10 @@ class IndexController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {   
-        $soft = DB::table('softs')->get();
-        return view('home.index.index',['soft'=>$soft]);
+    {
+        $articles = DB::table('articles')->get();
+        $banners = DB::table('banners')->get();
+        return view('home.index.index',['banners'=>$banners,'articles'=>$articles]); 
     }
 
     /**

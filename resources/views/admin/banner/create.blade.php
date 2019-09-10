@@ -27,13 +27,8 @@
         </div>
       </div>
       <div class="form-group">
-        <div class="label">
-          <label for="profile">图片：</label>
-        </div>
-        <div class="field">
-          <input type="file" id="profile" name="profile" class="input tips" style="width:25%; float:left;" data-toggle="hover" data-place="right" >
-          
-        </div>
+            <label for="profile">图片</label>
+            <input type="file" id="profile" name="profile"  class="form-control">            
       </div> 
       <div class="form-group">
         <div class="label">
