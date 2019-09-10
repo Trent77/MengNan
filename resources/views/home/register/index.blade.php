@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+<<<<<<< HEAD
   
   <head lang="en">
     <meta charset="UTF-8">
@@ -172,5 +173,4 @@
       </div>
       </div> -->
   </body>
-
 </html>

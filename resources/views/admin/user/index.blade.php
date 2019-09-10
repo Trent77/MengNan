@@ -14,46 +14,44 @@
 <body>
 <form method="post" action="" id="listform">
   <div class="panel admin-panel">
-    <div class="panel-head"><strong class="icon-reorder">用户列表</strong> <a href="" style="float:right; display:none;">添加字段</a></div>
- <!--    @if ($errors->any())
-	    <div class="alert alert-danger">
-	        <ul>
-	            @foreach ($errors->all() as $error)
-	                <li>{{ $error }}</li>
-	            @endforeach
-	        </ul>
-	    </div>
-	@endif -->
+    <div class="panel-head"><strong class="icon-reorder">管理员列表</strong> <a href="" style="float:right; display:none;">添加字段</a></div>
+	<!-- <form action="/admin/member/index" method="get"> -->
     <div class="padding border-bottom">
       <ul class="search" style="padding-left:10px;">
-        <li> <a class="button border-main icon-plus-square-o" href="/admin/user/create"> 添加用户</a> </li>
-          用户名：<input type="text" placeholder="请输入搜索关键字" name="keywords" class="input" style="width:250px; line-height:17px;display:inline-block" />
-        <input type="submit" value="搜索">
+        <li> <a class="button border-main icon-plus-square-o" href="/admin/user/create"> 添加管理员</a> </li>          
+       <!--  <form action="/admin/user/index" method="get">
+        	管理员名称：<input type="text" placeholder="请输入管理员名称" name="keyword"  class="input" style="width:250px; line-height:17px;display:inline-block" />
+			<input type="submit" value="搜索">
+		</form> -->
       </ul>
     </div>
+	<!-- </form> -->
     <table class="table table-hover text-center">
       <tr>
-        <th width="100" style="text-align:left; padding-left:20px;">ID</th>
-        <th>用户名</th>
-        <th>头像</th>
-        <th width="10%">更新时间</th>
+        <th>ID</th>
+        <th>管理员名称</th>
+        <th>邮箱</th>
         <th>操作</th>
       </tr>
       <volist name="list" id="vo">
-      	@foreach($data as $k=>$v)
+		@foreach($data as $k=>$v)
         <tr>
-          <td style="text-align:left; padding-left:20px;"><input type="checkbox" name="id[]" value="" />
-         {{ $v->id }}</td>
+          <td>{{ $v->id }}</td>
 		  <td>{{$v->name}}</td>
-          <td width="10%"><img src="/uploads/{{$v->profile}}" alt="" width="70" height="50" /></td>
-          <td>{{$v->created_at}}</td>
-          <td><div class="button-group"> <a class="button border-main" href="add.html"><span class="icon-edit"></span> 修改</a> <a class="button border-red" href="javascript:void(0)" onclick="return del(1,1,1)"><span class="icon-trash-o"></span> 删除</a> </div></td>
+          <td>{{$v->email}}</td>
+          <td>
+          	<div class="button-group">
+          		<a class="button border-main" style="background-color:pink;" href="/admin/user/rolelist/{{$v->id}}"><span class="icon-edit"></span> 角色分配</a>
+          		<a class="button border-main" href="/admin/user/edit/{{$v->id}}"><span class="icon-edit"></span> 修改</a>
+           		<a class="button border-red" href="/admin/user/destroy/{{$v->id}}"><span class="icon-trash-o"></span> 删除</a>
+          	</div>
+          </td>
         </tr>
       <tr>
       </tr>
-      @endforeach
+		@endforeach
     </table>
-    {{$data->links()}}
+ 	{{$data->links()}}
   </div>
 </form>
 

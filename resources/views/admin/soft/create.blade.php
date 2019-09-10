@@ -57,6 +57,7 @@
         data:{'name':data},
         success:function(res){
           alert(res);
+          window.location.href='/admin/soft/index';
         },
     });
   })

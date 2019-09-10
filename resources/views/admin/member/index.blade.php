@@ -5,7 +5,6 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 <meta name="renderer" content="webkit">
-<meta name="csrf-token" content="{{ csrf_token() }}">
 <title></title>
 <link rel="stylesheet" href="/admin/css/pintuer.css">
 <link rel="stylesheet" href="/admin/css/admin.css">
@@ -14,45 +13,73 @@
 </head>
 <body>
 <form method="post" action="" id="listform">
-    {{csrf_field()}}
   <div class="panel admin-panel">
-    <div class="panel-head"><strong class="icon-reorder">规格列表</strong> <a href="" style="float:right; display:none;">添加字段</a></div>
+    <div class="panel-head"><strong class="icon-reorder">会员列表</strong> <a href="" style="float:right; display:none;">添加字段</a></div>
+    @if ($errors->any())
+	    <div class="alert alert-danger">
+	        <ul>
+	            @foreach ($errors->all() as $error)
+	                <li>{{ $error }}</li>
+	            @endforeach
+	        </ul>
+	    </div>
+	@endif
+	<!-- <form action="/admin/member/index" method="get"> -->
     <div class="padding border-bottom">
       <ul class="search" style="padding-left:10px;">
-          <input type="text" placeholder="请输入搜索关键字" name="keywords" class="input" style="width:250px; line-height:17px;display:inline-block" />
-          <a href="javascript:void(0)" class="button border-main icon-search" onclick="changesearch()" > 搜索</a></li>
+        <li> <a class="button border-main icon-plus-square-o" href="/admin/member/create"> 添加会员</a> </li>
+          <!-- 用户名：<input type="text" placeholder="请输入搜索关键字" name="keyword" class="input" style="width:250px; line-height:17px;display:inline-block" />
+        <input type="submit" value="搜索"> -->
       </ul>
     </div>
+	<!-- </form> -->
     <table class="table table-hover text-center">
       <tr>
-        <th></th>
-        <th>商品名称</th>
-        <th>商品规格</th>
-        <!-- <th></th> -->
-        <th width="310">操作</th>
+        <th>ID</th>
+        <th>会员昵称</th>
+        <th>头像</th>
+        <th>邮箱</th>
+        <th>手机号</th>
+        <th>注册时间</th>
+        <th>操作</th>
       </tr>
       <volist name="list" id="vo">
-        @foreach($good as $k=>$v)
+		@foreach($data as $k=>$v)
         <tr>
-          <td style="text-align:left; padding-left:20px;"><input type="checkbox" name="id[]" value="" />
-        </td>
-          <td>{{$v->name}}</td>
-          <td>{{$v->specs_name}}</td>
-          <td><div class="button-group"> <a  class="button border-main" href="/admin/spec/add"><span class="icon-edit"></span> 编辑</a> <a  class="button border-red" href="/admin/soft/del"><span class="icon-trash-o"></span> 删除</a> </div></td>
+          <td>{{ $v->id }}</td>
+		  <td>{{$v->name}}</td>
+          <td width="10%"><img src="/uploads/{{$v->profile}}"" alt="" width="70" height="50" /></td>
+          <td>{{$v->email}}</td>
+          <td>{{$v->phone}}</td>
+          <td>{{$v->created_at}}</td>
+          <td>
+          	<div class="button-group"> 
+          		<a class="button border-main" href="/admin/member/edit/{{$v->id}}"><span class="icon-edit"></span> 修改</a>
+           		<a class="button border-red" href="/admin/member/destroy/{{$v->id}}"><span class="icon-trash-o"></span> 删除</a>
+          	</div>
+          </td>
         </tr>
-        @endforeach
       <tr>
+      </tr>
+		@endforeach
     </table>
-
+ 	{{$data->links()}}
   </div>
 </form>
-<script type="text/javascript">
+
+<!-- <script type="text/javascript">
 
 //搜索
 function changesearch(){
 
 }
 
+//单个删除
+function del(id,mid,iscid){
+	if(confirm("您确定要删除吗?")){
+
+	}
+}
 
 //全选
 $("#checkall").click(function(){
@@ -212,6 +239,7 @@ function changecopy(o){
 	}
 }
 
-</script>
+</script> -->
+
 </body>
 </html>

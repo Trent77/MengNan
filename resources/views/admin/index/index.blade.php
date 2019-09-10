@@ -15,15 +15,25 @@
 <body style="background-color:#f2f9fd;">
 <div class="header bg-main">
   <div class="logo margin-big-left fadein-top">
-    <h1><img src="images/y.jpg" class="radius-circle rotate-hover" height="50" alt="" />后台管理中心</h1>
+    <div class="user-name" height="50" which="50">
+        <h2>{{session('user')->name}}管理员</h2>
+        <!-- <span>管理员</span> -->
+    </div>
+    <!-- <h1><img src="images/y.jpg" class="radius-circle rotate-hover" height="50" alt="" />后台管理中心</h1> -->
   </div>
-  <div class="head-l"><a class="button button-little bg-green" href="/" target="_blank"><span class="icon-home"></span> 前台首页</a> &nbsp;&nbsp;<a class="button button-little bg-red" href="login.html"><span class="icon-power-off"></span> 退出登录</a> </div>
+  <div class="head-l"><a class="button button-little bg-green" href="/" target="_blank"><span class="icon-home"></span> 前台首页</a> &nbsp;&nbsp;<a class="button button-little bg-red" href="/admin/logout"><span class="icon-power-off"></span> 退出登录</a> </div>
 </div>
 <div class="leftnav">
   <div class="leftnav-title"><strong><span class="icon-list"></span>菜单列表</strong></div>
-  <h2><span class="icon-user"></span>基本设置</h2>
+  <h2><span class="icon-user"></span>管理员管理</h2>
     <ul style="display:block">
-      <li><a href="/admin/user/index" target="right"><span class="icon-caret-right"></span>用户管理</a></li>
+      <li><a href="/admin/user/index" target="right"><span class="icon-caret-right"></span>管理员管理</a></li>
+      <li><a href="/admin/role/index" target="right"><span class="icon-caret-right"></span>角色管理</a></li>
+      <li><a href="/admin/node/index" target="right"><span class="icon-caret-right"></span>权限管理</a></li>
+    </ul>
+  <h2><span class="icon-user"></span>会员管理</h2>
+    <ul style="display:block">
+      <li><a href="/admin/member/index" target="right"><span class="icon-caret-right"></span>会员管理</a></li>
       <li><a href="/admin/banner/index" target="right"><span class="icon-caret-right"></span>首页轮播</a></li>
     <li><a href="/admin/banner/index" target="right"><span class="icon-caret-right"></span>文章管理</a></li>
      <li><a href="/admin/category/index" target="right"><span class="icon-caret-right"></span>类别管理</a></li>
@@ -33,20 +43,16 @@
     <ul style="display:block">
       <li><a href="/admin/soft/index" target="right"><span class="icon-caret-right"></span>分类管理</a></li>
     </ul>
-  <h2><span class="icon-pencil-square-o"></span>品牌管理</h2>
-    <ul>
-      <li><a href="/admin/brand/index" target="right"><span class="icon-caret-right"></span>品牌信息</a></li>
-    </ul>
   <h2><span class="icon-pencil-square-o"></span>商品管理</h2>
     <ul>
       <li><a href="/admin/good/index" target="right"><span class="icon-caret-right"></span>商品信息</a></li>
-      <li><a href="/admin/spec/create" target="right"><span class="icon-caret-right"></span>添加规格</a></li>
-      <li><a href="/admin/spec/index" target="right"><span class="icon-caret-right"></span>商品规格</a></li>
+      <li><a href="/admin/store/index" target="right"><span class="icon-caret-right"></span>库存管理</a></li>
+      <!-- <li><a href="/admin/spec/index" target="right"><span class="icon-caret-right"></span>商品规格</a></li> -->
     </ul>
-  <!-- <h2><span class="icon-pencil-square-o"></span>品牌管理</h2>
+  <h2><span class="icon-pencil-square-o"></span>评论管理</h2>
     <ul>
-      <li><a href="/admin/brand/index" target="right"><span class="icon-caret-right"></span>品牌信息</a></li>
-    </ul> -->
+      <li><a href="/admin/review/index" target="right"><span class="icon-caret-right"></span>评论列表</a></li>
+    </ul>
 </div>
 <script type="text/javascript">
 $(function(){
@@ -68,7 +74,7 @@ $(function(){
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;切换语言：<a href="##">中文</a> &nbsp;&nbsp;<a href="##">英文</a> </li> -->
 </ul>
 <div class="admin">
-  <iframe scrolling="auto" rameborder="0" src="/admin/user/index" name="right" width="100%" height="100%"></iframe>
+  <iframe scrolling="auto" rameborder="0" src="/admin/wellcome" name="right" width="100%" height="100%"></iframe>
 </div>
 </body>
 </html>
