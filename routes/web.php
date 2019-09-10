@@ -11,10 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('home/index/index');
-    // return redirect('home/index/index');
-});
+	Route::get('/','Home\IndexController@index');
 
 	//登录
 	Route::get('/admin/login','Admin\IndexController@login');
