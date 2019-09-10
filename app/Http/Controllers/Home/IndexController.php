@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Home;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-
+use DB;
 class IndexController extends Controller
 {
     /**
@@ -14,7 +14,9 @@ class IndexController extends Controller
      */
     public function index()
     {
-        return view('home.index.index');
+        $articles = DB::table('articles')->get();
+        $banners = DB::table('banners')->get();
+        return view('home.index.index',['banners'=>$banners,'articles'=>$articles]); 
     }
 
     /**

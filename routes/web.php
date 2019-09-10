@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('home.index.index');
 });
 
 //后台路由
@@ -26,13 +26,17 @@ Route::namespace('Admin')->prefix('admin')->group(function(){
 	//用户添加页面
 	Route::get('user/create','UserController@create');
 	Route::post('/user/store','UserController@store');
+
+	//轮播图管理
 	//轮播图显示
 	Route::get('banner/index','BannerController@index'); 
 	//轮播图添加页面
 	Route::get('banner/create','BannerController@create');
-	//轮播图修改页面
+	//处理修改
 	Route::get('banner/edit','BannerController@edit');
+	//处理添加
 	Route::post('/banner/store','BannerController@store');
+
 	Route::get('/banner/edit/{id}','BannerController@edit');
 
 	Route::post('/banner/update/{id}','BannerController@update');
@@ -77,6 +81,21 @@ Route::namespace('Admin')->prefix('admin')->group(function(){
     Route::get('spec/create','SpecController@create');
     //处理规格添加
     Route::post('spec/store','SpecController@store');
+
+
+    //文章管理
+    //文章显示页面
+    Route::get('article/index','ArticleController@index');
+    Route::get('article/create','ArticleController@create');
+    Route::post('article/store','ArticleController@store');
+	Route::get('article/edit/{id}','ArticleController@edit');
+	Route::post('article/update/{id}','ArticleController@update');
+	Route::get('/article/destroy/{id}','ArticleController@destroy');
+
+	//无限极分类
+	Route::get('cate/index','CateController@index');
+	Route::get('cate/create','CateController@create');
+	Route::post('cate/store','CateController@store');
 });
 
 //=================================================================
@@ -91,5 +110,7 @@ Route::namespace('Home')->prefix('home')->group(function(){
 	Route::post('register/store','RegisterController@store');
 	//登录页面
 	Route::get('index/login','IndexController@login');
-
+	Route::get('index/index','IndexController@index');
+	Route::get('article/index','ArticleController@index');
+	Route::get('article/list','ArticleController@list');
 });

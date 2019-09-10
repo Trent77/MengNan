@@ -65,16 +65,13 @@
 			</div>
 			<div class="banner">
                       <!--轮播 -->
-						<div class="am-slider am-slider-default scoll" data-am-flexslider id="demo-slider-0">
+						<div class="am-slider am-slider-default scoll" data-am-flexslider id="demo-slider-0">							
 							<ul class="am-slides">
-								<li class="banner1"><a href="introduction.html"><img src="/home/images/ad1.jpg" /></a></li>
-								<li class="banner2"><a><img src="/home/images/ad2.jpg" /></a></li>
-								<li class="banner3"><a><img src="/home/images/ad3.jpg" /></a></li>
-								<li class="banner4"><a><img src="/home/images/ad4.jpg" /></a></li>
-
-							</ul>
-						</div>
-						<div class="clear"></div>	
+							@foreach($banners as $k=>$v)
+								<li class="banner1"><a href=""><img title="{{$v->desc}}" src="/uploads/{{$v->url}}"></a></li>
+								@endforeach
+							</ul>							
+						</div>	
 			</div>
 			<div class="shopNav">
 				<div class="slideall">
@@ -682,18 +679,15 @@
 					<div class="marqueen">
 						<span class="marqueen-title">商城头条</span>
 						<div class="demo">
-
+						@foreach($articles as $k=>$v)
 							<ul>
-								<li class="title-first"><a target="_blank" href="#">
+								<li class="title-first"><a target="_blank" href="/index.php/home/article/index?id={{ $v->id }}">
 									<img src="/home/images/TJ2.jpg"></img>
-									<span>[特惠]</span>商城爆品1分秒								
+									<span>[特惠]</span>{{$v->title}}								
 								</a></li>
-								<li class="title-first"><a target="_blank" href="#">
-									<span>[公告]</span>商城与广州市签署战略合作协议
-								     <img src="/home/images/TJ.jpg"></img>
-								     <p>XXXXXXXXXXXXXXXXXX</p>
-							    </a></li>
-							    
+								
+							</ul> 
+						@endforeach  
 						<div class="mod-vip">
 							<div class="m-baseinfo">
 								<a href="person/index.html">
@@ -716,8 +710,8 @@
 							</div>
 							<div class="clear"></div>	
 						</div>																	    
-							    
-								<li><a target="_blank" href="#"><span>[特惠]</span>洋河年末大促，低至两件五折</a></li>
+							<ul>
+								<li><a target="_blank" href=""><span>[特惠]</span>洋河年末大促，低至两件五折</a></li>
 								<li><a target="_blank" href="#"><span>[公告]</span>华北、华中部分地区配送延迟</a></li>
 								<li><a target="_blank" href="#"><span>[特惠]</span>家电狂欢千亿礼券 买1送1！</a></li>
 								
