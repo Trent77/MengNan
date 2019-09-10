@@ -123,13 +123,6 @@ Route::group(['namespace'=>'Admin','prefix'=>'admin','middleware'=>'login'],func
     //处理删除
     Route::get('soft/del/{id}','SoftController@del');
 
-	  //品牌管理
-	  //品牌显示页面
-	  Route::get('brand/index','BrandController@index');
-    //添加页面
-    Route::get('brand/create','BrandController@create');
-
-
 	  //商品管理
 	  //商品显示页面
 	  Route::get('good/index','GoodController@index');
@@ -142,11 +135,17 @@ Route::group(['namespace'=>'Admin','prefix'=>'admin','middleware'=>'login'],func
     //规格显示页面
     Route::get('spec/index','SpecController@index');
     //编辑规格页面
-    Route::get('spec/add','SpecController@add');
+    Route::get('spec/add','SpecController@add'); 
     //规格添加页面
     Route::get('spec/create','SpecController@create');
     //处理规格添加
     Route::post('spec/store','SpecController@store');
+
+    // 评论管理
+    Route::get('review/index','ReviewController@index');
+    // 删
+	Route::get('review/destroy/{id}','ReviewController@destroy');
+    
 });
 
 //=================================================================
