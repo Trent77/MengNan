@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <meta name="renderer" content="webkit">
-    <title>添加用户</title>  
+    <title>修改管理员</title>  
     <link rel="stylesheet" href="/admin/css/pintuer.css">
     <link rel="stylesheet" href="/admin/css/admin.css">
     <script src="/admin/js/jquery.js"></script>
@@ -13,41 +13,26 @@
 </head>
 <body>
 <div class="panel admin-panel">
-  <div class="panel-head"><strong><span class="icon-pencil-square-o"></span>添加用户</strong></div>
+  <div class="panel-head"><strong><span class="icon-pencil-square-o"></span>修改管理员</strong></div>
   <div class="body-content">
-    <form method="post" class="form-x" action="/admin/user/store" enctype="multipart/form-data">
+    <form method="post" class="form-x" action="/admin/user/update/{{$data->id}}" enctype="multipart/form-data">
       {{csrf_field()}}
       <div class="form-group">
         <div class="label">
           <label for="name">用户名：</label>
         </div>
         <div class="field">
-          <input type="text" id="name" class="input" name="name" value="" />
+          <input type="text" id="name" class="input" name="name" value="{{$data->name}}"/>
           <div class="tips"></div>
         </div>
       </div>
       <div class="form-group">
         <div class="label">
-          <label for="pwd">密码：</label>
+          <label for="email">邮箱：</label>
         </div>
         <div class="field">
-          <input type="password" id="pwd" class="input" name="pwd" value="" /> 
-        </div>
-      </div>
-      <div class="form-group">
-        <div class="label">
-          <label for="pwd2">确认密码：</label>
-        </div>
-        <div class="field">
-          <input type="password" id="pwd2" class="input" name="pwd2" value="" />
-        </div>
-      </div>
-      <div class="form-group">
-        <div class="label">
-          <label for="profile">用户头像：</label>
-        </div>
-        <div class="field">
-          <input type="file" id="profile" name="profile" class="form-control">
+          <input type="text" id="email" class="input" name="email" value="{{$data->email}}" />
+          <div class="tips"></div>
         </div>
       </div>
         <div class="field">
@@ -57,29 +42,5 @@
     </form>
   </div>
 </div>
-  <script type="text/javascript">
-  $('button[type=submit]').on('click',function(){
-    let formData = new FormData();
-    formData.append('name',$('#name').val());
-    formData.append('pwd',$('#pwd').val());
-    formData.append('pwd2',$('#pwd2').val());
-    formData.append('profile',$('#profile')[0].files[0]);
-
-    $.ajax({
-      url:'/admin/user/store',
-      type:'post',
-      data:formData,
-      contentType:false,
-      processData:false,
-      success:function(res){
-        if(res == 'ok'){
-          alert('添加成功');
-        }else{
-          alert(res);
-        }
-      }
-    });
-  });
-  </script>
 </body>
 </html>

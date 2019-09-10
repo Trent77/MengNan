@@ -29,7 +29,6 @@
         <th></th>
         <th width="100" style="text-align:left; padding-left:20px;">ID</th>
         <th>分类名称</th>
-        <th>创建时间</th>
         <!-- <th></th> -->
         <th width="310">操作</th>
       </tr>
@@ -40,7 +39,6 @@
         </td>
           <td>{{$v->id}}</td>
           <td>{{$v->name}}</td>
-          <td>{{$v->created_at}}</td>
           <td><div class="button-group"> <a  class="button border-main" href="/admin/soft/add/{{$v->id}}"><span class="icon-edit"></span> 修改</a> <a  class="button border-red" href="/admin/soft/del/{{$v->id}}"><span class="icon-trash-o"></span> 删除</a> </div></td>
         </tr>
         @endforeach

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Soft;
+use DB;
 
 class SoftController extends Controller
 {
@@ -26,9 +27,7 @@ class SoftController extends Controller
       if(empty($name)){
         echo '分类名不能为空';die;
       }
-      $soft = new Soft;
-      $soft->name = $name;
-      $res = $soft->save();
+      $res = DB::table('softs')->insert(['name'=>$name]);
       if($res){
         echo '添加成功';
       }else{
@@ -62,6 +61,15 @@ class SoftController extends Controller
 
     //处理删除
     Public function del($id){
+      $res = DB::table('goods')->where('soft_id',$id)->first();
+      if($res){
+        return redirect("/admin/soft/index");
+      }
+      //规格表
+      $res = DB::table('specs')->where('soft_id',$id)->first();
+      if($res){
+        return redirect("/admin/soft/index");
+      }
       Soft::destroy($id);
       return redirect("/admin/soft/index");
     }

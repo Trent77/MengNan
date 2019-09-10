@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateSoftsTable extends Migration
+class CreateGoodsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreateSoftsTable extends Migration
      */
     public function up()
     {
-        Schema::create('softs', function (Blueprint $table) {
-            $table->increments('id')->comment('分类ID 唯一');
-            $table->string('name',32)->comment('分类名称');
-            $table->timestamps();
+        Schema::create('goods', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('soft_id')->comment('分类id');
+            $table->string('name',32)->comment('商品名字');
         });
     }
 
@@ -27,6 +27,6 @@ class CreateSoftsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('softs');
+        Schema::dropIfExists('goods');
     }
 }

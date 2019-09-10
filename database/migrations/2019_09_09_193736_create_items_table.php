@@ -13,11 +13,10 @@ class CreateItemsTable extends Migration
      */
     public function up()
     {
-        Schema::create('items', function (Blueprint $table) {
-          $table->increments('id')->comment('规格内容id 唯一');
-          $table->integer('specs_id')->comment('规格id');
-          $table->string('name')->comment('规格具体内容');
-          $table->timestamps();
+         Schema::create('items', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('spec_id')->comment('属性id');
+            $table->string('name')->comment('属性值名字');
         });
     }
 
