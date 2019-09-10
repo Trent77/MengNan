@@ -11,10 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-    // return redirect('home/index/index');
-});
+Route::get('/','Home\index@index');
 
 	//登录
 	Route::get('/admin/login','Admin\IndexController@login');
@@ -166,7 +163,9 @@ Route::group(['namespace'=>'Admin','prefix'=>'admin','middleware'=>'login'],func
     //库存管理
     Route::get('store/index','StoreController@index');
     //库存修改
-    Route::get('store/edit','StoreController@edit');
+	Route::get('store/edit/{id}','StoreController@edit');
+	//处理修改
+	Route::get('store/add','StoreController@add');
 
 });
 
@@ -182,6 +181,11 @@ Route::group(['namespace'=>'Home','prefix'=>'home'],function(){
 	Route::post('register/store','RegisterController@store');
 	//登录页面
 	Route::get('index/login','IndexController@login');
+
+	// 个人中心展示
+	Route::get('index/myself','IndexController@myself');
+	//个人资料
+	Route::get('index/information','IndexController@information');
 });
 
 Auth::routes();

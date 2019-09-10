@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Home;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use DB;
 
 class IndexController extends Controller
 {
@@ -13,29 +14,36 @@ class IndexController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        return view('home.index.index');
+    {   
+        $soft = DB::table('softs')->get();
+        return view('home.index.index',['soft'=>$soft]);
     }
 
     /**
-     * Show the form for creating a new resource.
+     *个人中心
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        //
+    public function myself()
+    {   
+        $weekarray=array("日","一","二","三","四","五","六");
+        //先定义一个数组
+        $date['weekday'] = "星期".$weekarray[date("w")];
+        $date['time'] = '20'.date('y.m');
+        $date['day'] = date('d');
+        return view('home.index.myself',['date'=>$date]);
     }
 
     /**
-     * Store a newly created resource in storage.
+     * 个人资料
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function information()
     {
-        //
+        //个人资料显示页
+        return view('home.index.information');
     }
 
     /**
