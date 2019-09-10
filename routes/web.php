@@ -109,13 +109,13 @@ Route::group(['namespace'=>'Admin','prefix'=>'admin','middleware'=>'login'],func
 	Route::post('banner/update/{id}','BannerController@update');
 	Route::get('banner/destroy/{id}','BannerController@destroy');
 
-	  //分类管理
-	  //分类显示页面
-	  Route::get('soft/index','SoftController@index');
-	  //添加分类页面
-	  Route::get('soft/create','SoftController@create');
-	  //处理添加
-	  Route::post('soft/store','SoftController@store');
+	//分类管理
+	//分类显示页面
+	Route::get('soft/index','SoftController@index');
+	//添加分类页面
+	Route::get('soft/create','SoftController@create');
+	//处理添加
+	Route::post('soft/store','SoftController@store');
     //修改显示页面
     Route::get('soft/add/{id}','SoftController@add');
     //处理修改
@@ -123,29 +123,55 @@ Route::group(['namespace'=>'Admin','prefix'=>'admin','middleware'=>'login'],func
     //处理删除
     Route::get('soft/del/{id}','SoftController@del');
 
-	  //商品管理
-	  //商品显示页面
-	  Route::get('good/index','GoodController@index');
+	//商品管理
+	//商品显示页面
+	Route::get('good/index','GoodController@index');
     //商品添加页
     Route::get('good/create','GoodController@create');
     //处理添加
     Route::post('good/store','GoodController@store');
 
+    //处理商品添加规格
+    Route::post('good/edit','GoodController@edit');
+    //商品删除
+    Route::post('good/del','GoodController@del');
+
     //规格管理
     //规格显示页面
     Route::get('spec/index','SpecController@index');
     //编辑规格页面
-    Route::get('spec/add','SpecController@add'); 
+    Route::get('spec/add/{id}','SpecController@add');
     //规格添加页面
     Route::get('spec/create','SpecController@create');
     //处理规格添加
     Route::post('spec/store','SpecController@store');
+    //处理规格删除
+    Route::post('spec/del','SpecController@del');
+
+    //商品和规格的关系
+    Route::post('goodspec/store','GoodspecController@store');
+
+    // 商品和对应属性id得到的属性值
+    Route::post('item/create','ItemController@create');
+    //添加所属属性的属性值
+    Route::get('item/add','ItemController@add');
+    //展示sku
+    Route::get('item/show','ItemController@show');
+    //处理sku
+    Route::get('item/store','ItemController@store');
+    //删除sku
+    Route::post('item/del','ItemController@del');
+
+
+    //库存管理
+    Route::get('store/index','StoreController@index');
+    //库存修改
+    Route::get('store/edit','StoreController@edit');
 
     // 评论管理
     Route::get('review/index','ReviewController@index');
     // 删
 	Route::get('review/destroy/{id}','ReviewController@destroy');
-    
 });
 
 //=================================================================
@@ -161,7 +187,3 @@ Route::group(['namespace'=>'Home','prefix'=>'home'],function(){
 	//登录页面
 	Route::get('index/login','IndexController@login');
 });
-
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');

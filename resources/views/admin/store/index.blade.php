@@ -10,54 +10,85 @@
 <link rel="stylesheet" href="/admin/css/admin.css">
 <script src="/admin/js/jquery.js"></script>
 <script src="/admin/js/pintuer.js"></script>
+<meta name="csrf-token" content="{{ csrf_token() }}">
+
 </head>
 <body>
-<form method="post" action="" id="listform">
+
   <div class="panel admin-panel">
-    <div class="panel-head"><strong class="icon-reorder">品牌列表</strong> <a href="" style="float:right; display:none;">添加字段</a></div>
+    <div class="panel-head"><strong class="icon-reorder">库存列表</strong> <a href="" style="float:right; display:none;">添加字段</a></div>
     <div class="padding border-bottom">
+    <form method="get" action="/admin/good/index" id="listform">
       <ul class="search" style="padding-left:10px;">
-        <li> <a class="button border-main icon-plus-square-o" href="/admin/brand/create"> 添加品牌</a> </li>
-          <input type="text" placeholder="请输入搜索关键字" name="keywords" class="input" style="width:250px; line-height:17px;display:inline-block" />
-          <a href="javascript:void(0)" class="button border-main icon-search" onclick="changesearch()" > 搜索</a></li>
+          <input type="text" placeholder="请输入搜索关键字" name="keywords" value=""  class="input" style="width:250px; line-height:17px;display:inline-block" />
+          <button class="button border-main icon-search" > 搜索</button>
       </ul>
+     </form>
     </div>
     <table class="table table-hover text-center">
       <tr>
-        <th></th>
-        <th width="100" style="text-align:left; padding-left:20px;">ID</th>
-        <th>品牌名称</th>
-        <th>所属分类</th>
-        <th>创建时间</th>
+        <th>商品名称</th>
+        <th>规格名称</th>
+        <th>规格id</th>
+        <th>价格</th>
+        <th>销售库存</th>
+        <th>冻结库存</th>
+        <th>实际库存</th>
         <th width="310">操作</th>
       </tr>
       <volist name="list" id="vo">
-        <tr>
-          <td style="text-align:left; padding-left:20px;"><input type="checkbox" name="id[]" value="" />
-        </td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td><div class="button-group"> <a class="button border-main" href="add.html"><span class="icon-edit"></span> 修改</a> <a class="button border-red" href="javascript:void(0)" onclick="return del(1,1,1)"><span class="icon-trash-o"></span> 删除</a> </div></td>
+      @foreach($data as $k=>$v)
+        <tr id="">
+          <td>{{$v->name}}</td>
+          <td>{{$v->key_name}}</td>
+          <td>{{$v->key}}</td>
+          <td>{{$v->price}}</td>
+          <td>{{$v->store_x}}</td>
+          <td>{{$v->store_d}}</td>
+          <td>{{$v->store_s}}</td>
+          <td><div class="button-group">
+            <a class="button border-main" href="/admin/store/edit/{{$v->id}}"><span class="icon-edit"></span> 修改</a>
+             <a class="button border-red" href="javascript:void(0)" onclick=""><span class="icon-trash-o"></span> 删除</a>
+          </div></td>
+      @endforeach
         </tr>
-
       <tr>
+
     </table>
 
   </div>
-</form>
+
 <script type="text/javascript">
 
 //搜索
 function changesearch(){
-
+	var keywords = $('#keywords').val();
+	$.ajax({
+		type:'get',
+		url:'/admin/good/index',
+		data:{'keywords':keywords},
+	})
 }
 
 //单个删除
-function del(id,mid,iscid){
+function del(id){
 	if(confirm("您确定要删除吗?")){
 
+          $.ajaxSetup({
+          headers: {
+              'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+          }
+          });
+          $.ajax({
+            url:'/admin/good/del',
+            data:{'id':id},
+            type:'post',
+            success:function(res){
+              let tr = $('#tr'+id);
+              console.log(tr);
+              tr.remove(); 
+            }
+           });
 	}
 }
 
