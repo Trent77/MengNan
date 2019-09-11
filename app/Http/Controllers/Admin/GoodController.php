@@ -29,11 +29,15 @@ class GoodController extends Controller
     //处理添加商品
     public function store(Request $request){
       $name = $request->input('name');
+      $title = $request->input('title');
       $soft_id = $request->input('soft_id');
       if(empty($name)){
         echo '商品名不能为空';die;
       }
-      $res = DB::table('goods')->insert(['name'=>$name,'soft_id'=>$soft_id]);
+      if(empty($title)){
+        echo '标题不能为空';die;
+      }
+      $res = DB::table('goods')->insert(['name'=>$name,'soft_id'=>$soft_id,'title'=>$title]);
       if($res){
         echo '添加成功';die;
       }else{
@@ -67,5 +71,39 @@ class GoodController extends Controller
       //删除商品所对应的sku
       DB::table('sku')->where('good_id', '=', $id)->delete();
       echo 'ok';
+    }
+
+    //商品详情添加
+    public function write($id){
+      $res = DB::table('goods')->where('id',$id)->select('show_status')->get();
+      $res = $res[0]->show_status;
+      if($res){
+        return back();
+      }
+      $good = DB::table('goods')->where('id',$id)->first();
+      return view('admin.good.write',['good'=>$good]);
+    }
+    
+    //处理商品属性添加
+    public function chuli(Request $request){
+      $photo_pro = $request->file('photo_pro');
+      $photo_mini = $request->file('photo_mini');
+      $good_id = $request->input('good_id');
+      
+
+      for($i=0;$i<count($photo_pro);$i++){
+        $path = $photo_pro[$i]->store(date('Y-m-d'));
+        DB::table('good_photo_pro')->insert(['good_id'=>$good_id,'photo_pro'=>'/uploads/'.$path]);
+      }
+
+      for($i=0;$i<count($photo_mini);$i++){
+        $path = $photo_mini[$i]->store(date('Y-m-d'));
+        DB::table('good_photo_mini')->insert(['good_id'=>$good_id,'photo_mini'=>'/uploads/'.$path]);
+      }
+
+      DB::table('goods')->where('id',$good_id)->update(['show_status'=>1]);
+
+      return redirect('/admin/good/index');
+      
     }
 }

@@ -29,10 +29,12 @@
     <table class="table table-hover text-center">
       <tr>
         <th></th>
-        <th width="100" style="text-align:left; padding-left:20px;">ID</th>
+        <th>ID</th>
         <th>商品名称</th>
+        <th>商品标题</th>
         <th>所属分类</th>
         <th>规格状态</th>
+        <th>详情状态</th>
         <th width="310">操作</th>
       </tr>
       <volist name="list" id="vo">
@@ -41,10 +43,13 @@
           <td style="text-align:left; padding-left:20px;"><input type="checkbox" name="id[]" value="" />
         </td>
           <td>{{$v->id}}</td>
+          <td>{{$v->title}}</td>
           <td>{{$v->name}}</td>
           <td>{{$v->soft_id}}</td>
           <td>{{$v->spec_status}}</td>
+          <td>{{$v->show_status}}</td>
           <td><div class="button-group">
+          <a class="button border-back" href="/admin/good/write/{{$v->id}}"><span class="icon-edit"></span>设置详情</a>
             <a class="button border-green" href="/admin/spec/add/{{$v->id}}"><span class="icon-edit"></span>设置规格</a>
 <!--             <a class="button border-main" href="add.html"><span class="icon-edit"></span> 修改</a> -->
              <a class="button border-red" href="javascript:void(0)" onclick="return del({{$v->id}})"><span class="icon-trash-o"></span> 删除</a>

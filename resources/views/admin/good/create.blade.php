@@ -27,6 +27,13 @@
           <div class="tips"></div>
         </div>
         <div class="label">
+          <label>商品标题</label>
+        </div>
+        <div class="field">
+          <input type="text" id='title' class="input w50" value="" name="title" />
+          <div class="tips"></div>
+        </div>
+        <div class="label">
           <label>所属分类</label>
         </div>
         <div class="field">
@@ -37,7 +44,6 @@
           </select>
         </div>
       </div>
-
         <div class="field">
           <button class="button bg-main icon-check-square-o" type="submit">提交</button>
         </div>
@@ -55,6 +61,7 @@
 <script type="text/javascript">
   $('button').on('click',function(){
     var name = $('#i1').val();
+    var title = $('#title').val();
     var soft_id = $('#i2').val();
     $.ajaxSetup({
     headers: {
@@ -65,7 +72,7 @@
     $.ajax({
         url:'/admin/good/store',
         type:'post',
-        data:{'name':name,'soft_id':soft_id},
+        data:{'name':name,'soft_id':soft_id,'title':title},
         success:function(res){
           alert(res);
           window.location.href='/admin/good/index';

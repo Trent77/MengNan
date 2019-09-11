@@ -11,7 +11,7 @@
 |
 */
 
-	Route::get('/','Home\index@index');
+Route::get('/','Home\index@index');
 
 	//登录
 	Route::get('/admin/login','Admin\IndexController@login');
@@ -130,6 +130,10 @@ Route::group(['namespace'=>'Admin','prefix'=>'admin','middleware'=>'login'],func
     //处理添加
     Route::post('good/store','GoodController@store');
 
+    //商品添加详情页
+    Route::get('good/write/{id}','GoodController@write');
+    //添加商品属性
+    Route::post('good/chuli','GoodController@chuli');
     //处理商品添加规格
     Route::post('good/edit','GoodController@edit');
     //商品删除
@@ -205,12 +209,13 @@ Route::group(['namespace'=>'Home','prefix'=>'home'],function(){
 	//登录页面
 	Route::get('index/login','IndexController@login');
 
+	//商品详情页
+	Route::get('good/show/{id}','GoodController@show');
+
 	// 个人中心展示
 	Route::get('index/myself','IndexController@myself');
 	//个人资料
 	Route::get('index/information','IndexController@information');
-});
-
 	//轮播图
 	Route::get('index/index','IndexController@index');
 

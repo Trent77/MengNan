@@ -15,9 +15,10 @@ class IndexController extends Controller
      */
     public function index()
     {
-        $articles = DB::table('articles')->get();
-        $banners = DB::table('banners')->get();
-        return view('home.index.index',['banners'=>$banners,'articles'=>$articles]); 
+        
+        // $banners = DB::table('banners')->get();
+        // return view('home.index.index',['banners'=>$banners]); 
+        return view('home.index.index'); 
     }
 
     /**
