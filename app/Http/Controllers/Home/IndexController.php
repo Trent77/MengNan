@@ -12,11 +12,21 @@ class IndexController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public static function getcatesbypid($pid){
+        $s=DB::table("cates")->where('pid','=',$pid)->get();
+        $data=[];
+        foreach ($s as $key => $value) {
+            $value->sub=self::getcatesbypid($value->id);
+            $data[]=$value;
+        }
+        return $data;
+    }
     public function index()
     {
-        $articles = DB::table('articles')->get();
-        $banners = DB::table('banners')->get();
-        return view('home.index.index',['banners'=>$banners,'articles'=>$articles]); 
+        $cate=self::getcatesbypid(0);
+        
+        $banners = DB::table('banners')->get(); 
+        return view('home.index.index',['banners'=>$banners,'cate'=>$cate]); 
     }
 
     /**
