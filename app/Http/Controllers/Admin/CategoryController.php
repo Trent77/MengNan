@@ -40,10 +40,11 @@ class CategoryController extends Controller
     {
         // 接收数据
         $data = $request->except('');
-        // dump($data);die;
 
         //创建时间
         $data['created_at'] = date('Y-m-d H:i:s');
+        // dump($data);die;
+        
 
         // 数据入库
         $res = DB::table('cates')->insert($data);

@@ -23,7 +23,8 @@
             "database/factories"
         ],
         "files":[
-          "app/show_errors.php"
+          "app/show_errors.php",
+          "CCP_REST_DEMO_PHP_v2.7r1/Demo/SendTemplateSMS.php"
         ],
         "psr-4": {
             "App\\": "app/"

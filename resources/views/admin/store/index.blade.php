@@ -18,7 +18,7 @@
   <div class="panel admin-panel">
     <div class="panel-head"><strong class="icon-reorder">库存列表</strong> <a href="" style="float:right; display:none;">添加字段</a></div>
     <div class="padding border-bottom">
-    <form method="get" action="/admin/good/index" id="listform">
+    <form method="get" action="/admin/store/index" id="listform">
       <ul class="search" style="padding-left:10px;">
           <input type="text" placeholder="请输入搜索关键字" name="keywords" value=""  class="input" style="width:250px; line-height:17px;display:inline-block" />
           <button class="button border-main icon-search" > 搜索</button>
@@ -47,8 +47,7 @@
           <td>{{$v->store_d}}</td>
           <td>{{$v->store_s}}</td>
           <td><div class="button-group">
-            <a class="button border-main" href="/admin/store/edit/{{$v->id}}"><span class="icon-edit"></span> 修改</a>
-             <a class="button border-red" href="javascript:void(0)" onclick=""><span class="icon-trash-o"></span> 删除</a>
+            <a class="button border-main" href="/admin/store/edit/{{$v->id}}"><span class="icon-edit"></span> 设置库存/价格</a>
           </div></td>
       @endforeach
         </tr>

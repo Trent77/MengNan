@@ -34,8 +34,6 @@
   <h2><span class="icon-user"></span>会员管理</h2>
     <ul style="display:block">
       <li><a href="/admin/member/index" target="right"><span class="icon-caret-right"></span>会员管理</a></li>
-      <li><a href="/admin/banner/index" target="right"><span class="icon-caret-right"></span>首页轮播</a></li>
-    <li><a href="/admin/banner/index" target="right"><span class="icon-caret-right"></span>文章管理</a></li>
      <li><a href="/admin/category/index" target="right"><span class="icon-caret-right"></span>类别管理</a></li>
     <li><a href="/admin/order/index" target="right"><span class="icon-caret-right"></span>订单管理</a></li>
     </ul>
@@ -48,6 +46,18 @@
       <li><a href="/admin/good/index" target="right"><span class="icon-caret-right"></span>商品信息</a></li>
       <li><a href="/admin/store/index" target="right"><span class="icon-caret-right"></span>库存管理</a></li>
       <!-- <li><a href="/admin/spec/index" target="right"><span class="icon-caret-right"></span>商品规格</a></li> -->
+    </ul>
+    <h2><span class="icon-user"></span>轮播图管理</h2>
+    <ul style="display:block">
+      <li><a href="/admin/banner/index" target="right"><span class="icon-caret-right"></span>轮播图管理</a></li>
+    </ul>
+    <h2><span class="icon-user"></span>文章管理</h2>
+    <ul style="display:block">
+      <li><a href="/admin/article/index" target="right"><span class="icon-caret-right"></span>文章列表</a></li>
+    </ul>
+    <h2><span class="icon-user"></span>无限极分类管理</h2>
+    <ul style="display:block">
+      <li><a href="/admin/cate/index" target="right"><span class="icon-caret-right"></span>分类管理</a></li>
     </ul>
   <h2><span class="icon-pencil-square-o"></span>评论管理</h2>
     <ul>
@@ -69,9 +79,6 @@ $(function(){
 </script>
 <ul class="bread">
   <li><a href="/admin/user/index" target="right" class="icon-home"> 首页</a></li>
-  <!-- <li><a href="##" id="a_leader_txt">网站信息</a></li> -->
-  <!-- <li><b>当前语言：</b><span style="color:red;">中文</php></span>
-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;切换语言：<a href="##">中文</a> &nbsp;&nbsp;<a href="##">英文</a> </li> -->
 </ul>
 <div class="admin">
   <iframe scrolling="auto" rameborder="0" src="/admin/wellcome" name="right" width="100%" height="100%"></iframe>
