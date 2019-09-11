@@ -4,30 +4,17 @@ namespace App\Http\Controllers\Home;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use DB;
 
-class IndexController extends Controller
+class InformationController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public static function getcatesbypid($pid){
-        $s=DB::table("cates")->where('pid','=',$pid)->get();
-        $data=[];
-        foreach ($s as $key => $value) {
-            $value->sub=self::getcatesbypid($value->id);
-            $data[]=$value;
-        }
-        return $data;
-    }
     public function index()
     {
-        $cate=self::getcatesbypid(0);
-        
-        $banners = DB::table('banners')->get(); 
-        return view('home.index.index',['banners'=>$banners,'cate'=>$cate]); 
+        return view('home.information.index');
     }
 
     /**
@@ -49,7 +36,6 @@ class IndexController extends Controller
     public function store(Request $request)
     {
         //
-
     }
 
     /**
@@ -95,10 +81,5 @@ class IndexController extends Controller
     public function destroy($id)
     {
         //
-    }
-
-    //前台登录 
-    public function login(){
-        return view('home.index.login');
     }
 }

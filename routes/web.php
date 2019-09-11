@@ -12,10 +12,7 @@
 */
 
 
-Route::get('/', function () {
-    return view('welcome');
-    // return redirect('home/index/index');
-});
+	Route::get('/','Home\IndexController@index');
 
 	//登录
 	Route::get('/admin/login','Admin\IndexController@login');
@@ -170,7 +167,9 @@ Route::group(['namespace'=>'Admin','prefix'=>'admin','middleware'=>'login'],func
     //库存管理
     Route::get('store/index','StoreController@index');
     //库存修改
-    Route::get('store/edit','StoreController@edit');
+	Route::get('store/edit/{id}','StoreController@edit');
+	//处理修改
+	Route::get('store/add','StoreController@add');
 
     // 评论管理
     Route::get('review/index','ReviewController@index');
@@ -199,7 +198,6 @@ Route::group(['namespace'=>'Admin','prefix'=>'admin','middleware'=>'login'],func
 
 //前台首页
 Route::get('/','Home\IndexController@index');
-
 Route::get('/sms','Home\RegisterController@sms');
 
 //前台路由
@@ -210,9 +208,21 @@ Route::group(['namespace'=>'Home','prefix'=>'home'],function(){
 	//登录页面
 	Route::get('index/login','IndexController@login');
 
+
+	// 个人中心展示
+	Route::get('myself/index','MyselfController@index');
+
+	//个人资料
+	Route::get('information/index','InformationController@index');
+
+	// 收货地址
+	Route::get('address/index','AddressController@index');
+
+	// 订单管理
+	Route::get('order/index','OrderController@index');
+
 	//轮播图
 	Route::get('index/index','IndexController@index');
-
 	//邮箱注册
 	Route::post('register/index','RegisterController@store');
 	//手机注册

@@ -27,8 +27,6 @@ class RegisterController extends Controller
         $request->session()->put('code', $data);
         
         return sendTemplateSMS("13527033856",[$data],"1");
-
-
         
     }
 
@@ -120,16 +118,10 @@ class RegisterController extends Controller
         // return redirect('/')->with('success','注册成功，恭喜成为猛男商城的一员');
         return redirect('/')->with('success','添加成功');
         
-
-
-
          // $data = $request->all();
          
          // dump($data['yzm']);
          // dump($date);die;
-
-
-
 
     }
 
@@ -177,9 +169,7 @@ class RegisterController extends Controller
             //session返回一个user值
             $user = session('user');
 
-        dump($user);die;
-
-        
+        // dump($user);die;
 
         return json_encode($res);
     }
