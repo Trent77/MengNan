@@ -12,10 +12,7 @@
 */
 
 
-Route::get('/', function () {
-    return view('welcome');
-    // return redirect('home/index/index');
-});
+Route::get('/', 'Home\IndexController@index' );
 
 	//登录
 	Route::get('/admin/login','Admin\IndexController@login');
@@ -196,4 +193,6 @@ Route::group(['namespace'=>'Home','prefix'=>'home'],function(){
 	Route::post('register/phone','RegisterController@phone');
 	//登录
 	Route::post('register/login','RegisterController@login');
+    //	退出登录
+    Route::get('register/logout','RegisterController@logout');
 });

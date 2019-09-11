@@ -17,6 +17,7 @@
 		<script src="/home/AmazeUI-2.4.2/assets/js/jquery.min.js"></script>
 		<script src="/home/AmazeUI-2.4.2/assets/js/amazeui.min.js"></script>
 
+
 	</head>
 
 	<body>
@@ -26,8 +27,11 @@
 				<ul class="message-l">
 					<div class="topMessage">
 						<div class="menu-hd">
-							<a href="/home/index/login" target="_top" class="h">亲，请登录</a>
+							@if(!empty(session('user')))欢迎 {{session('user')->name}}
+							<a href="" id="out">退出</a>
+							@else<a href="/home/index/login" target="_top" class="h">亲，请登录</a>
 							<a href="/home/register/index" target="_top">免费注册</a>
+								@endif
 						</div>
 					</div>
 				</ul>
@@ -43,6 +47,41 @@
 					</div>
 				</ul>
 				</div>
+
+			<script>
+				{{--let user = {!! json_encode(session('user')) !!}  //声明一个变量获取session数据--}}
+				{{--		// console.log(user);--}}
+				$('#out').click(function () {
+					let user = {!! json_encode(session('user')) !!}  //声明一个变量获取session数据
+							// console.log(user);
+					if(user !=''){
+						$.get("/home/register/logout",'',function(res) {
+							console.log(res)
+							if(res.error == 1){
+								alert(res.msg);
+							}else if(res.error == 0){
+								alert(res.msg);
+								window.location = '/';
+
+							}
+						},'json')
+					}
+
+							//
+							// $.ajax({
+							// 	type:'get',
+							// 	data:'',
+							// 	dataType:'json',
+							// 	url:'/home/register/logout',
+							//
+							//
+							//
+							// })
+					return false;
+
+						})
+
+			</script>
 
 				<!--悬浮搜索框-->
 
@@ -74,19 +113,19 @@
 
 							</ul>
 						</div>
-						<div class="clear"></div>	
+						<div class="clear"></div>
 			</div>
 			<div class="shopNav">
 				<div class="slideall">
-					
+
 					   <div class="long-title"><span class="all-goods">全部分类</span></div>
-					   				
-		        				
+
+
 						<!--侧边导航 -->
 						<div id="nav" class="navfull">
 							<div class="area clearfix">
 								<div class="category-content" id="guide_2">
-									
+
 									<div class="category">
 										<ul class="category-list" id="js_climit_li">
 											<li class="appliance js_toggle relative first">
@@ -138,7 +177,7 @@
 														</div>
 													</div>
 												</div>
-											<b class="arrow"></b>	
+											<b class="arrow"></b>
 											</li>
 											<li class="appliance js_toggle relative">
 												<div class="category-info">
@@ -618,10 +657,10 @@
 
 							</div>
 						</div>
-						
-						
+
+
 						<!--轮播-->
-						
+
 						<script type="text/javascript">
 							(function() {
 								$('.am-slider').flexslider();
@@ -674,14 +713,14 @@
 							<ul>
 								<li class="title-first"><a target="_blank" href="#">
 									<img src="/home/images/TJ2.jpg"></img>
-									<span>[特惠]</span>商城爆品1分秒								
+									<span>[特惠]</span>商城爆品1分秒
 								</a></li>
 								<li class="title-first"><a target="_blank" href="#">
 									<span>[公告]</span>商城与广州市签署战略合作协议
 								     <img src="/home/images/TJ.jpg"></img>
 								     <p>XXXXXXXXXXXXXXXXXX</p>
 							    </a></li>
-							    
+
 						<div class="mod-vip">
 							<div class="m-baseinfo">
 								<a href="person/index.html">
@@ -689,7 +728,7 @@
 								</a>
 								<em>
 									Hi,<span class="s-name">小叮当</span>
-									<a href="#"><p>点击更多优惠活动</p></a>									
+									<a href="#"><p>点击更多优惠活动</p></a>
 								</em>
 							</div>
 							<div class="member-logout">
@@ -702,13 +741,13 @@
 								<a href="#"><strong>0</strong>待付款</a>
 								<a href="#"><strong>0</strong>待评价</a>
 							</div>
-							<div class="clear"></div>	
-						</div>																	    
-							    
+							<div class="clear"></div>
+						</div>
+
 								<li><a target="_blank" href="#"><span>[特惠]</span>洋河年末大促，低至两件五折</a></li>
 								<li><a target="_blank" href="#"><span>[公告]</span>华北、华中部分地区配送延迟</a></li>
 								<li><a target="_blank" href="#"><span>[特惠]</span>家电狂欢千亿礼券 买1送1！</a></li>
-								
+
 							</ul>
                         <div class="advTip"><img src="/home/images/advTip.jpg"/></div>
 						</div>
@@ -750,7 +789,7 @@
 							<div class="recommendationMain one">
 								<a href="introduction.html"><img src="/home/images/tj.png "></img></a>
 							</div>
-						</div>						
+						</div>
 						<div class="am-u-sm-4 am-u-lg-3 ">
 							<div class="info ">
 								<h3>囤货过冬</h3>
@@ -784,27 +823,27 @@
 						</div>
 					  <div class="am-g am-g-fixed ">
 						<div class="am-u-sm-3 ">
-							<div class="icon-sale one "></div>	
-								<h4>秒杀</h4>							
+							<div class="icon-sale one "></div>
+								<h4>秒杀</h4>
 							<div class="activityMain ">
 								<img src="/home/images/activity1.jpg "></img>
 							</div>
 							<div class="info ">
 								<h3>春节送礼优选</h3>
-							</div>														
+							</div>
 						</div>
-						
+
 						<div class="am-u-sm-3 ">
-						  <div class="icon-sale two "></div>	
+						  <div class="icon-sale two "></div>
 							<h4>特惠</h4>
 							<div class="activityMain ">
 								<img src="/home/images/activity2.jpg "></img>
 							</div>
 							<div class="info ">
-								<h3>春节送礼优选</h3>								
-							</div>							
-						</div>						
-						
+								<h3>春节送礼优选</h3>
+							</div>
+						</div>
+
 						<div class="am-u-sm-3 ">
 							<div class="icon-sale three "></div>
 							<h4>团购</h4>
@@ -813,8 +852,8 @@
 							</div>
 							<div class="info ">
 								<h3>春节送礼优选</h3>
-							</div>							
-						</div>						
+							</div>
+						</div>
 
 						<div class="am-u-sm-3 last ">
 							<div class="icon-sale "></div>
@@ -824,7 +863,7 @@
 							</div>
 							<div class="info ">
 								<h3>春节送礼优选</h3>
-							</div>													
+							</div>
 						</div>
 
 					  </div>
@@ -834,7 +873,7 @@
 
                     <div id="f1">
 					<!--甜点-->
-					
+
 					<div class="am-container ">
 						<div class="shopTitle ">
 							<h4>甜品</h4>
@@ -852,19 +891,19 @@
                         </span>
 						</div>
 					</div>
-					
+
 					<div class="am-g am-g-fixed floodOne ">
 						<div class="am-u-sm-5 am-u-md-3 am-u-lg-4 text-one ">
 							<a href="# ">
 								<div class="outer-con ">
 									<div class="title ">
 										零食大礼包开抢啦
-									</div>					
+									</div>
 									<div class="sub-title ">
 										当小鱼儿恋上软豆腐
 									</div>
 								</div>
-                                  <img src="/home/images/act1.png " />								
+                                  <img src="/home/images/act1.png " />
 							</a>
 						</div>
 						<div class="am-u-sm-7 am-u-md-5 am-u-lg-4">
@@ -872,11 +911,11 @@
 								<div class="outer-con ">
 									<div class="title ">
 										雪之恋和风大福
-									</div>									
+									</div>
 									<div class="sub-title ">
 										仅售：¥13.8
 									</div>
-									
+
 								</div>
 								<a href="# "><img src="/home/images/act2.png " /></a>
 							</div>
@@ -888,7 +927,7 @@
 									<div class="sub-title ">
 										仅售：¥13.8
 									</div>
-									
+
 								</div>
 								<a href="# "><img src="/home/images/act2.png " /></a>
 						    </div>
@@ -899,7 +938,7 @@
 								<div class="title ">
 									小优布丁
 								</div>
-								
+
 								<div class="sub-title ">
 									尝鲜价：¥4.8
 								</div>
@@ -912,7 +951,7 @@
 								<div class="title ">
 									小优布丁
 								</div>
-								
+
 								<div class="sub-title ">
 									尝鲜价：¥4.8
 								</div>
@@ -925,7 +964,7 @@
 								<div class="title ">
 									小优布丁
 								</div>
-								
+
 								<div class="sub-title ">
 									尝鲜价：¥4.8
 								</div>
@@ -938,7 +977,7 @@
 								<div class="title ">
 									小优布丁
 								</div>
-								
+
 								<div class="sub-title ">
 									尝鲜价：¥4.8
 								</div>
@@ -968,8 +1007,8 @@
 						</div>
 					</div>
 					<div class="am-g am-g-fixed floodTwo ">
-						
-						
+
+
 						<div class="am-u-sm-5 am-u-md-4 text-one ">
 							<a href="# ">
 								<img src="/home/images/act1.png " />
@@ -980,7 +1019,7 @@
 									<div class="sub-title ">
 										当小鱼儿恋上软豆腐
 									</div>
-									
+
 								</div>
 							</a>
 						</div>
@@ -989,20 +1028,20 @@
 									<div class="title ">
 										雪之恋和风大福
 									</div>
-									
+
 									<div class="sub-title ">
 										仅售：¥13.8
 									</div>
 								</div>
-								<a href="# "><img src="/home/images/5.jpg " /></a>						
+								<a href="# "><img src="/home/images/5.jpg " /></a>
 						</div>
-						
+
 						<div class="am-u-md-4 am-u-lg-2 text-three">
 							<div class="outer-con ">
 								<div class="title ">
 									小优布丁
 								</div>
-								
+
 								<div class="sub-title ">
 									尝鲜价：¥4.8
 								</div>
@@ -1014,7 +1053,7 @@
 								<div class="title ">
 									小优布丁
 								</div>
-								
+
 								<div class="sub-title ">
 									尝鲜价：¥4.8
 								</div>
@@ -1026,49 +1065,49 @@
 									<div class="title ">
 										雪之恋和风大福
 									</div>
-									
+
 									<div class="sub-title ">
 										仅售：¥13.8
 									</div>
 								</div>
-								<a href="# "><img src="/home/images/5.jpg " /></a>						
-						</div>						
+								<a href="# "><img src="/home/images/5.jpg " /></a>
+						</div>
 						<div class="am-u-sm-6 am-u-md-3 am-u-lg-2 text-four ">
 								<div class="outer-con ">
 									<div class="title ">
 										雪之恋和风大福
 									</div>
-									
+
 									<div class="sub-title ">
 										仅售：¥13.8
 									</div>
 								</div>
-								<a href="# "><img src="/home/images/5.jpg " /></a>						
-						</div>				
+								<a href="# "><img src="/home/images/5.jpg " /></a>
+						</div>
 						<div class="am-u-sm-4 am-u-md-3 am-u-lg-4 text-five">
 							<div class="outer-con ">
 								<div class="title ">
 									小优布丁
-								</div>								
+								</div>
 								<div class="sub-title ">
 									尝鲜价：¥4.8
 								</div>
-								
+
 							</div>
 							<a href="# "><img src="/home/images/act2.png " /></a>
-						</div>	
+						</div>
 						<div class="am-u-sm-4 am-u-md-3 am-u-lg-2 text-six">
 							<div class="outer-con ">
 								<div class="title ">
 									小优布丁
 								</div>
-								
+
 								<div class="sub-title ">
 									尝鲜价：¥4.8
 								</div>
 							</div>
 							<a href="# "><img src="/home/images/act3.png " /></a>
-						</div>	
+						</div>
 						<div class="am-u-sm-4 am-u-md-3 am-u-lg-4 text-five">
 							<div class="outer-con ">
 								<div class="title ">
@@ -1077,16 +1116,16 @@
 								<div class="sub-title ">
 									尝鲜价：¥4.8
 								</div>
-								
+
 							</div>
 							<a href="# "><img src="/home/images/act2.png " /></a>
-						</div>							
+						</div>
 					</div>
 
 					<div class="clear "></div>
 
 
-                 
+
 					<div class="am-container ">
 						<div class="shopTitle ">
 							<h4>海味</h4>
@@ -1198,8 +1237,8 @@
 						</ul>
 
 					</div>
-   
-   <!-- 
+
+   <!--
 					<div class="footer ">
 						<div class="footer-hd ">
 							<p>
@@ -1229,8 +1268,8 @@
 		<div class="navCir">
 			<li class="active"><a href="home.html"><i class="am-icon-home "></i>首页</a></li>
 			<li><a href="sort.html"><i class="am-icon-list"></i>分类</a></li>
-			<li><a href="shopcart.html"><i class="am-icon-shopping-basket"></i>购物车</a></li>	
-			<li><a href="person/index.html"><i class="am-icon-user"></i>我的</a></li>					
+			<li><a href="shopcart.html"><i class="am-icon-shopping-basket"></i>购物车</a></li>
+			<li><a href="person/index.html"><i class="am-icon-user"></i>我的</a></li>
 		</div>
 
 

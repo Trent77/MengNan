@@ -83,7 +83,7 @@ class RegisterController extends Controller
     {       
         $code = session('code');
         $data = $request->except('_token');
-        // dump($code);  
+
         if(empty($data['yzm'])){
             // echo '验证码不能为空';die;
             return back()->with('error','验证码不能为空');
@@ -107,7 +107,7 @@ class RegisterController extends Controller
 
         unset($data['pwd4']);
         unset($data['yzm']);
-        // dump($data);
+
         $data['created_at'] = date('Y-m-d H:i:s');
         
 
@@ -125,8 +125,7 @@ class RegisterController extends Controller
 
          // $data = $request->all();
          
-         // dump($data['yzm']);
-         // dump($date);die;
+
 
 
 
@@ -137,11 +136,11 @@ class RegisterController extends Controller
     public function login(Request $request){
 
         $data = $request->except('_token');
-
         //验证是否有对应数据
         $name = DB::table('members')->where('name',$data['name'])->where('pwd',$data['pwd'])->first();
         $email = DB::table('members')->where('email',$data['name'])->where('pwd',$data['pwd'])->first();
         $phone = DB::table('members')->where('phone',$data['name'])->where('pwd',$data['pwd'])->first();
+
 
         //判断用户名
         if($name){
@@ -149,9 +148,9 @@ class RegisterController extends Controller
             $res['msg'] = '登录成功';
             //把数据保存到session
             $request->session()->put('user',$name);
-        }else{
-            $res['error'] = 1;
-            $res['msg'] = '用户名或密码有误';
+            //session返回一个user值
+            $user = session('user');
+
         }
 
         if($email){
@@ -159,9 +158,9 @@ class RegisterController extends Controller
             $res['msg'] = '登录成功';
             //把数据保存到session
             $request->session()->put('user',$email);
-        }else{
-            $res['error'] = 1;
-            $res['msg'] = '用户名或密码有误';
+            //session返回一个user值
+            $user = session('user');
+
         }
 
         if($phone){
@@ -169,19 +168,48 @@ class RegisterController extends Controller
             $res['msg'] = '登录成功';
             //把数据保存到session
             $request->session()->put('user',$phone);
-        }else{
+            //session返回一个user值
+            $user = session('user');
+
+        }
+
+        if(!($name||$email||$phone)){
             $res['error'] = 1;
             $res['msg'] = '用户名或密码有误';
         }
 
-            //session返回一个user值
-            $user = session('user');
 
-        dump($user);die;
+
 
         
 
         return json_encode($res);
+    }
+
+
+    public function logout(Request $request){
+
+//        dump(session('user'));
+//dump($request->session('user')->flush());die;
+
+        $request->session('user')->flush();
+
+        if(empty(session('user'))){
+            $res['error'] = 0;
+            $res['msg'] = '退出成功';
+        }else{
+            $res['error'] = 1;
+            $res['msg'] = '退出失败';
+        }
+
+        return json_encode($res);
+
+//        if(empty($out)){
+//
+//        }
+
+
+//        return json_encode();
     }
 
     /**
