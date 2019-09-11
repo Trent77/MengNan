@@ -11,7 +11,8 @@
 |
 */
 
-Route::get('/','Home\index@index');
+
+
 
 	//登录
 	Route::get('/admin/login','Admin\IndexController@login');
@@ -198,7 +199,6 @@ Route::group(['namespace'=>'Admin','prefix'=>'admin','middleware'=>'login'],func
 
 //前台首页
 Route::get('/','Home\IndexController@index');
-
 Route::get('/sms','Home\RegisterController@sms');
 
 //前台路由
@@ -211,14 +211,24 @@ Route::group(['namespace'=>'Home','prefix'=>'home'],function(){
 
 	//商品详情页
 	Route::get('good/show/{id}','GoodController@show');
+	//通过规格查找价格
+	Route::post('good/store','GoodController@store');
+	
 
 	// 个人中心展示
-	Route::get('index/myself','IndexController@myself');
+	Route::get('myself/index','MyselfController@index');
+
 	//个人资料
-	Route::get('index/information','IndexController@information');
+	Route::get('information/index','InformationController@index');
+
+	// 收货地址
+	Route::get('address/index','AddressController@index');
+
+	// 订单管理
+	Route::get('order/index','OrderController@index');
+
 	//轮播图
 	Route::get('index/index','IndexController@index');
-
 	//邮箱注册
 	Route::post('register/index','RegisterController@store');
 	//手机注册

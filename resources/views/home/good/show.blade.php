@@ -3,6 +3,7 @@
  <head> 
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" /> 
+  <meta name="csrf-token" content="{{ csrf_token() }}">
   <title>商品页面</title> 
   <link href="/home/AmazeUI-2.4.2/assets/css/admin.css" rel="stylesheet" type="text/css" /> 
   <link href="/home/AmazeUI-2.4.2/assets/css/amazeui.css" rel="stylesheet" type="text/css" /> 
@@ -131,14 +132,14 @@
 								});
 							</script> 
       <div class="tb-booth tb-pic tb-s310"> 
-       <a href=""><img src="{{$photo_pro[0]->photo_pro}}" alt="细节展示放大镜特效" rel="/home/images/01.jpg" class="jqzoom" /></a> 
+       <a href=""><img src="{{$photo_mini[0]->photo_mini}}" alt="细节展示放大镜特效" rel="/home/images/01.jpg" class="jqzoom" /></a> 
       </div> 
       <ul class="tb-thumb" id="thumblist"> 
       
-      @foreach($photo_pro as $v)
+      @foreach($photo_mini as $v)
       <li class="tb-selected"> 
         <div class="tb-pic tb-s40"> 
-         <a href="#"><img src="{{$v->photo_pro}}" mid="{{$v->photo_pro}}" big="{{$v->photo_pro}}" /></a> 
+         <a href="#"><img src="{{$v->photo_mini}}" mid="{{$v->photo_mini}}" big="{{$v->photo_mini}}" /></a> 
         </div>
       </li>
       @endforeach 
@@ -151,63 +152,33 @@
      <!--规格属性--> 
      <!--名称--> 
      <div class="tb-detail-hd"> 
-      <h1> 良品铺子 手剥松子218g 坚果炒货 巴西松子 </h1> 
+      <h1> {{$good->title}} </h1> 
      </div> 
      <div class="tb-detail-list"> 
       <!--价格--> 
       <div class="tb-detail-price"> 
        <li class="price iteminfo_price"> 
         <dt>
-         促销价
+         价格
         </dt> 
         <dd>
          <em>&yen;</em>
-         <b class="sys_item_price">56.90</b> 
-        </dd> </li> 
-       <li class="price iteminfo_mktprice"> 
-        <dt>
-         原价
-        </dt> 
-        <dd>
-         <em>&yen;</em>
-         <b class="sys_item_mktprice">98.00</b>
+         <b class="sys_item_price" id="all_price"></b> 
         </dd> </li> 
        <div class="clear"></div> 
       </div> 
-      <!--地址--> 
-      <dl class="iteminfo_parameter freight"> 
-       <dt>
-        配送至
-       </dt> 
-       <div class="iteminfo_freprice"> 
-        <div class="am-form-content address"> 
-         <select data-am-selected=""> <option value="a">浙江省</option> <option value="b">湖北省</option> </select> 
-         <select data-am-selected=""> <option value="a">温州市</option> <option value="b">武汉市</option> </select> 
-         <select data-am-selected=""> <option value="a">瑞安区</option> <option value="b">洪山区</option> </select> 
-        </div> 
-        <div class="pay-logis">
-          快递
-         <b class="sys_item_freprice">10</b>元 
-        </div> 
-       </div> 
-      </dl> 
       <div class="clear"></div> 
       <!--销量--> 
       <ul class="tm-ind-panel"> 
-       <li class="tm-ind-item tm-ind-sellCount canClick"> 
-        <div class="tm-indcon">
-         <span class="tm-label">月销量</span>
-         <span class="tm-count">1015</span>
-        </div> </li> 
        <li class="tm-ind-item tm-ind-sumCount canClick"> 
         <div class="tm-indcon">
          <span class="tm-label">累计销量</span>
-         <span class="tm-count">6015</span>
+         <span class="tm-count">{{$good->sale}}</span>
         </div> </li> 
        <li class="tm-ind-item tm-ind-reviewCount canClick tm-line3"> 
         <div class="tm-indcon">
          <span class="tm-label">累计评价</span>
-         <span class="tm-count">640</span>
+         <span class="tm-count">{{$good->talk}}</span>
         </div> </li> 
       </ul> 
       <div class="clear"></div> 
@@ -234,32 +205,40 @@
              <div class="cart-title">
               口味
              </div> 
-             <ul> 
-              <li class="sku-line selected">原味<i></i></li> 
-              <li class="sku-line">奶油<i></i></li> 
-              <li class="sku-line">炭烧<i></i></li> 
-              <li class="sku-line">咸香<i></i></li> 
+             <ul id="key"> 
+              @foreach($sku as $k=>$v)
+              <li class="sku-line " onclick="xxoo({{$v->id}})" >{{$v->key_name}}<i></i></li>
+              @endforeach 
              </ul> 
             </div> 
-            <div class="theme-options"> 
-             <div class="cart-title">
-              包装
-             </div> 
-             <ul> 
-              <li class="sku-line selected">手袋单人份<i></i></li> 
-              <li class="sku-line">礼盒双人份<i></i></li> 
-              <li class="sku-line">全家福礼包<i></i></li> 
-             </ul> 
-            </div> 
+            <script>
+              // 知道当前点击的规格
+              function xxoo($id){
+                 $.ajaxSetup({ 
+                    headers: {
+                           'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') 
+                      }
+                  });
+                $.ajax({
+                  url:'/home/good/store',
+                  data:{'id':$id},
+                  type:'post',
+                  dataType:'json',
+                  success:function(res){
+                    $('#all_price').text(res.price);
+                    $('#store_x').text(res.store_x);
+                    $('#text_box').attr('max',res.store_x);
+                  }
+                });
+              }
+            </script>
             <div class="theme-options"> 
              <div class="cart-title number">
               数量
              </div> 
              <dd> 
-              <input id="min" class="am-btn am-btn-default" name="" type="button" value="-" /> 
-              <input id="text_box" name="" type="text" value="1" style="width:30px;" /> 
-              <input id="add" class="am-btn am-btn-default" name="" type="button" value="+" /> 
-              <span id="Stock" class="tb-hidden">库存<span class="stock">1000</span>件</span> 
+              <input id="text_box" name="" type="number" min="1" max="" value="1" style="width:60px;" />  
+              <span id="Stock" class="tb-hidden">库存<span class="stock" id="store_x"></span>件</span> 
              </dd> 
             </div> 
             <div class="clear"></div> 
@@ -285,31 +264,7 @@
          </div> 
         </div> 
        </dd> 
-      </dl> 
-      <div class="clear"></div> 
-      <!--活动	--> 
-      <div class="shopPromotion gold"> 
-       <div class="hot"> 
-        <dt class="tb-metatit">
-         店铺优惠
-        </dt> 
-        <div class="gold-list"> 
-         <p>购物满2件打8折，满3件7折<span>点击领券<i class="am-icon-sort-down"></i></span></p> 
-        </div> 
-       </div> 
-       <div class="clear"></div> 
-       <div class="coupon"> 
-        <dt class="tb-metatit">
-         优惠券
-        </dt> 
-        <div class="gold-list"> 
-         <ul> 
-          <li>125减5</li> 
-          <li>198减10</li> 
-          <li>298减20</li> 
-         </ul> 
-        </div> 
-       </div> 
+      </dl>  
       </div> 
      </div> 
      <div class="pay"> 
@@ -328,36 +283,6 @@
      </div> 
     </div> 
     <div class="clear"></div> 
-   </div> 
-   <!--优惠套装--> 
-   <div class="match"> 
-    <div class="match-title">
-     优惠套装
-    </div> 
-    <div class="match-comment"> 
-     <ul class="like_list"> 
-      <li> 
-       <div class="s_picBox"> 
-        <a class="s_pic" href="#"><img src="/home/images/cp.jpg" /></a> 
-       </div> <a class="txt" target="_blank" href="#">萨拉米 1+1小鸡腿</a> 
-       <div class="info-box"> 
-        <span class="info-box-price">&yen; 29.90</span> 
-        <span class="info-original-price">￥ 199.00</span> 
-       </div> </li> 
-      <li class="plus_icon"><i>+</i></li> 
-      <li> 
-       <div class="s_picBox"> 
-        <a class="s_pic" href="#"><img src="/home/images/cp2.jpg" /></a> 
-       </div> <a class="txt" target="_blank" href="#">ZEK 原味海苔</a> 
-       <div class="info-box"> 
-        <span class="info-box-price">&yen; 8.90</span> 
-        <span class="info-original-price">￥ 299.00</span> 
-       </div> </li> 
-      <li class="plus_icon"><i>=</i></li> 
-      <li class="total_price"> <p class="combo_price"><span class="c-title">套餐价:</span><span>￥35.00</span> </p> <p class="save_all">共省:<span>￥463.00</span></p> <a href="#" class="buy_now">立即购买</a> </li> 
-      <li class="plus_icon"><i class="am-icon-angle-right"></i></li> 
-     </ul> 
-    </div> 
    </div> 
    <div class="clear"></div> 
    <!-- introduce--> 
@@ -431,36 +356,16 @@
       <div class="am-tabs-bd"> 
        <div class="am-tab-panel am-fade am-in am-active"> 
         <div class="J_Brand"> 
-         <div class="attr-list-hd tm-clear"> 
-          <h4>产品参数：</h4>
-         </div> 
-         <div class="clear"></div> 
-         <ul id="J_AttrUL"> 
-          <li title="">产品类型:&nbsp;烘炒类</li> 
-          <li title="">原料产地:&nbsp;巴基斯坦</li> 
-          <li title="">产地:&nbsp;湖北省武汉市</li> 
-          <li title="">配料表:&nbsp;进口松子、食用盐</li> 
-          <li title="">产品规格:&nbsp;210g</li> 
-          <li title="">保质期:&nbsp;180天</li> 
-          <li title="">产品标准号:&nbsp;GB/T 22165</li> 
-          <li title="">生产许可证编号：&nbsp;QS4201 1801 0226</li> 
-          <li title="">储存方法：&nbsp;请放置于常温、阴凉、通风、干燥处保存 </li> 
-          <li title="">食用方法：&nbsp;开袋去壳即食</li> 
-         </ul> 
          <div class="clear"></div> 
         </div> 
         <div class="details"> 
          <div class="attr-list-hd after-market-hd"> 
           <h4>商品细节</h4> 
          </div> 
-         <div class="twlistNews"> 
-          <img src="/home/images/tw1.jpg" /> 
-          <img src="/home/images/tw2.jpg" /> 
-          <img src="/home/images/tw3.jpg" /> 
-          <img src="/home/images/tw4.jpg" /> 
-          <img src="/home/images/tw5.jpg" /> 
-          <img src="/home/images/tw6.jpg" /> 
-          <img src="/home/images/tw7.jpg" /> 
+         <div class="twlistNews">
+         @foreach($photo_pro as $k=>$v)
+          <img src="{{$v->photo_pro}}" /> 
+         @endforeach  
          </div> 
         </div> 
         <div class="clear"></div> 
