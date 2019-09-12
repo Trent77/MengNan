@@ -132,7 +132,7 @@ class RegisterController extends Controller
         $name = DB::table('members')->where('name',$data['name'])->where('pwd',$data['pwd'])->first();
         $email = DB::table('members')->where('email',$data['name'])->where('pwd',$data['pwd'])->first();
         $phone = DB::table('members')->where('phone',$data['name'])->where('pwd',$data['pwd'])->first();
-    
+
         //判断用户名
         if($name){
             $res['error'] = 0;
