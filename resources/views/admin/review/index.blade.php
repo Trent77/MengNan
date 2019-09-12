@@ -22,7 +22,7 @@
       <th width="5%">ID</th>     
       <th>会员名</th>  
       <th>商品</th>   
-      <th>评论</th>
+      <th>评论内容</th>
       <th>状态</th>
       <th>评论时间</th>  
       <th width="250">操作</th>
@@ -30,8 +30,8 @@
    @foreach($data as $k=>$v)
     <tr>
       <td>{{$v->id}}</td>
-      <td>{{$v->mname}}</td>      
-      <td>{{$v->gname}}</td>  
+      <td></td>      
+      <td></td>  
       <td>{{$v->content}}</td>
       <td>
         @if($v->status == 0)

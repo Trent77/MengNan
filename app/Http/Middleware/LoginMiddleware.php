@@ -16,7 +16,7 @@ class LoginMiddleware
     public function handle($request, Closure $next)
     {
 
-        // 登录验证
+               // 登录验证
         if(!session('user')){
             return redirect('/admin/login');
         }

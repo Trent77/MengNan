@@ -27,8 +27,6 @@ class RegisterController extends Controller
         $request->session()->put('code', $data);
         
         return sendTemplateSMS("13527033856",[$data],"1");
-
-
         
     }
 
@@ -120,14 +118,8 @@ class RegisterController extends Controller
         // return redirect('/')->with('success','注册成功，恭喜成为猛男商城的一员');
         return redirect('/')->with('success','添加成功');
         
-
-
-
          // $data = $request->all();
          
-
-
-
 
 
     }
@@ -147,9 +139,9 @@ class RegisterController extends Controller
             $res['error'] = 0;
             $res['msg'] = '登录成功';
             //把数据保存到session
-            $request->session()->put('user',$name);
+            $request->session()->put('member',$name);
             //session返回一个user值
-            $user = session('user');
+            $member = session('member');
 
         }
 
@@ -157,9 +149,9 @@ class RegisterController extends Controller
             $res['error'] = 0;
             $res['msg'] = '登录成功';
             //把数据保存到session
-            $request->session()->put('user',$email);
+            $request->session()->put('member',$email);
             //session返回一个user值
-            $user = session('user');
+            $member = session('member');
 
         }
 
@@ -167,9 +159,9 @@ class RegisterController extends Controller
             $res['error'] = 0;
             $res['msg'] = '登录成功';
             //把数据保存到session
-            $request->session()->put('user',$phone);
+            $request->session()->put('member',$phone);
             //session返回一个user值
-            $user = session('user');
+            $member = session('member');
 
         }
 
@@ -178,10 +170,6 @@ class RegisterController extends Controller
             $res['msg'] = '用户名或密码有误';
         }
 
-
-
-
-        
 
         return json_encode($res);
     }
@@ -192,9 +180,9 @@ class RegisterController extends Controller
 //        dump(session('user'));
 //dump($request->session('user')->flush());die;
 
-        $request->session('user')->flush();
+        $request->session('member')->flush();
 
-        if(empty(session('user'))){
+        if(empty(session('member'))){
             $res['error'] = 0;
             $res['msg'] = '退出成功';
         }else{

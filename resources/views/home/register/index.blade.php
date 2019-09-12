@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-<<<<<<< HEAD
 
   <head lang="en">
     <meta charset="UTF-8">
@@ -29,7 +28,7 @@
         <div class="login-box">
           <div class="am-tabs" id="doc-my-tabs">
             <ul class="am-tabs-nav am-nav am-nav-tabs am-nav-justify">
-              <?php dd(session('user'));?>
+
               <li class="am-active">
                 <a href="/home/register/index">邮箱注册</a></li>
               <li>

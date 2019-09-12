@@ -17,8 +17,6 @@ class UserController extends Controller
     public function index()
     {
         // 接受参数
-        // $keyword = $request->input('keyword','');
-
         $data = DB::table('admin_user')->paginate(5);
         return view('admin.user.index',['data'=>$data]);
     }

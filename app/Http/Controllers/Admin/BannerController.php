@@ -91,14 +91,12 @@ class BannerController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //获取参数
         $data = $request->except(['_token']);
-
         //检查文件上传
         if($request->hasFile('profile')){
-            $data['url'] = $request->file('profile')->store(date('Y-m-d'));
-        }
+            $data['url'] = $request->file('profile')->store(date('Ymd'));
 
+        }
         //修改
         $res = DB::table('banners')->where('id',$id)->update($data);
 
