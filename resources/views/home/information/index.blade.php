@@ -83,7 +83,7 @@
 										<input type="radio" name="radio10" value="1"  data-am-ucheck> 男
 										</label>
 										<label class="am-radio-inline">
-											<input type="radio" name="radio10" value="2"  data-am-ucheck> 女
+											<input type="radio" name="radio10" value="2" <?php echo'checked'?> data-am-ucheck> 女
 										</label>
 										<label class="am-radio-inline">
 											<input type="radio" name="radio10" value="0"  data-am-ucheck> 保密
