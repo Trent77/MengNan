@@ -218,8 +218,7 @@ Route::group(['namespace'=>'Home','prefix'=>'home'],function(){
 	Route::post('good/store','GoodController@store');
 	
 
-	// 个人中心展示
-	Route::get('myself/index','MyselfController@index');
+
 
 	//个人资料
 	Route::get('information/index','InformationController@index');
@@ -238,5 +237,14 @@ Route::group(['namespace'=>'Home','prefix'=>'home'],function(){
 	Route::post('register/phone','RegisterController@phone');
 	//登录
 	Route::post('register/login','RegisterController@login');
+    //	退出登录
+    Route::get('register/logout','RegisterController@logout');
+
+});
+
+Route::group(['namespace'=>'Home','prefix'=>'home','middleware'=>'homelogin'],function(){
+
+    // 个人中心展示
+    Route::get('myself/index','MyselfController@index');
 
 });

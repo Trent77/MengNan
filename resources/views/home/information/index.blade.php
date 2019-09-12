@@ -1,4 +1,5 @@
-<!DOCTYPE html>
+
+        <!DOCTYPE html>
 <html>
 
 	<head>
@@ -14,7 +15,7 @@
 		<link href="/home/css/infstyle.css" rel="stylesheet" type="text/css">
 		<script src="/home/AmazeUI-2.4.2/assets/js/jquery.min.js" type="text/javascript"></script>
 		<script src="/home/AmazeUI-2.4.2/assets/js/amazeui.js" type="text/javascript"></script>
-			
+
 	</head>
 
 	<body>
@@ -51,7 +52,7 @@
 							<p class="am-form-help">头像</p>
 
 							<div class="info-m">
-								<div><b>用户名：<i>小叮当</i></b></div>
+								<div><b>用户名：<i>@if(empty($member->nickname))陌生人~@else{{$member->nickname}}@endif</i></b></div>
 							</div>
 						</div>
 
@@ -62,30 +63,30 @@
 								<div class="am-form-group">
 									<label for="user-name2" class="am-form-label">昵称</label>
 									<div class="am-form-content">
-										<input type="text" id="user-name2" placeholder="nickname">
+										<input type="text" id="user-name2" placeholder="{{$member->nickname}}">
 
 									</div>
 								</div>
 
-								<div class="am-form-group">
-									<label for="user-name" class="am-form-label">姓名</label>
-									<div class="am-form-content">
-										<input type="text" id="user-name2" placeholder="name">
+{{--								<div class="am-form-group">--}}
+{{--									<label for="user-name" class="am-form-label">姓名</label>--}}
+{{--									<div class="am-form-content">--}}
+{{--										<input type="text" id="user-name2" placeholder="name">--}}
 
-									</div>
-								</div>
+{{--									</div>--}}
+{{--								</div>--}}
 
 								<div class="am-form-group">
 									<label class="am-form-label">性别</label>
 									<div class="am-form-content sex">
 										<label class="am-radio-inline">
-											<input type="radio" name="radio10" value="male" data-am-ucheck> 男
+										<input type="radio" name="radio10" value="1"  data-am-ucheck> 男
 										</label>
 										<label class="am-radio-inline">
-											<input type="radio" name="radio10" value="female" data-am-ucheck> 女
+											<input type="radio" name="radio10" value="2"  data-am-ucheck> 女
 										</label>
 										<label class="am-radio-inline">
-											<input type="radio" name="radio10" value="secret" data-am-ucheck> 保密
+											<input type="radio" name="radio10" value="0"  data-am-ucheck> 保密
 										</label>
 									</div>
 								</div>
@@ -113,7 +114,7 @@
 											</select>
 											<em>日</em></div>
 									</div>
-							
+
 								</div>
 								<div class="am-form-group">
 									<label for="user-phone" class="am-form-label">电话</label>

@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-  
   <head lang="en">
     <meta charset="UTF-8">
     <title>注册</title>
@@ -14,7 +13,7 @@
     <script src="/home/AmazeUI-2.4.2/assets/js/jquery.min.js"></script>
     <script src="/home/AmazeUI-2.4.2/assets/js/amazeui.min.js"></script>
   </head>
-  
+
   <body>
     <div class="login-boxtitle">
       <a href="home/demo.html">
@@ -28,6 +27,7 @@
         <div class="login-box">
           <div class="am-tabs" id="doc-my-tabs">
             <ul class="am-tabs-nav am-nav am-nav-tabs am-nav-justify">
+
               <li class="am-active">
                 <a href="/home/register/index">邮箱注册</a></li>
               <li>
@@ -107,7 +107,7 @@
       <script type="text/javascript">
             $("#huoq").click(  //获取按钮点击
                 function(){    //方法
-            
+
 
                   var phone = $("#phone").val();   //取货id为phone的值，返回声明一个变量
                   var reg = /^((1[3,5,8][0-9])|(14[5,7])|(17[0,6,7,8])|(19[7]))\d{8}$/; //正则表达式，规定输入的手机号码，返回声明一个变量
@@ -118,7 +118,7 @@
                       $.get("http://www.mn.com/sms",{ph:phone},function(data){
                           // $("#cookie").val(sum);      //把获得的验证码放到隐藏控件
                           // console.log(data);
-                          // console.log($("#cookie").val(sum));     
+                          // console.log($("#cookie").val(sum));
                       })
                   }
                 }
@@ -132,7 +132,7 @@
               //             o.dyMobileButton="发送验证码";
               //             wait = 60;
               //         } else {
-                 
+
               //             o.setAttribute("disabled", true);
               //             o.dyMobileButton="重新发送(" + wait + ")";
               //             wait--;
@@ -147,7 +147,7 @@
 
 
 
-            
+
 
       </script>
 

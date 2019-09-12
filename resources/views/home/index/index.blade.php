@@ -179,13 +179,13 @@
 						})
 					}
 
-				</script> 
-
+   </script>
+  </div>
   <div class="shopMainbg"> 
    <div class="shopMain" id="shopmain"> 
     <!--今日推荐 --> 
     <div class="am-g am-g-fixed recommendation"> 
-     <div class="clock am-u-sm-3" "=""> 
+     <div class="clock am-u-sm-3">
       <img src="/home/images/2016.png " /> 
       <p>今日<br />推荐</p> 
      </div> 
@@ -573,8 +573,9 @@
            ZEK 原味海苔
           </div> <span class="e-price ">￥8.90</span> </a> 
         </div> </li> 
-      </ul> 
-     </div> 
+      </ul>
+
+     </div>
 
 		</div>
 		</div>
@@ -582,8 +583,8 @@
 		<div class="navCir">
 			<li class="active"><a href="home.html"><i class="am-icon-home "></i>首页</a></li>
 			<li><a href="sort.html"><i class="am-icon-list"></i>分类</a></li>
-			<li><a href="shopcart.html"><i class="am-icon-shopping-basket"></i>购物车</a></li>	
-			<li><a href="person/index.html"><i class="am-icon-user"></i>我的</a></li>					
+			<li><a href="shopcart.html"><i class="am-icon-shopping-basket"></i>购物车</a></li>
+			<li><a href="person/index.html"><i class="am-icon-user"></i>我的</a></li>
 		</div>
 		<!--菜单 -->
 		<div class=tip>

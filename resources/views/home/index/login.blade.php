@@ -89,10 +89,11 @@
 
 					$.ajax({
 						type:'post',//提交方式
-						dataType:'json',//数据类型
+						dataType:'json',				//数据类型
 						data:{'name':name,'pwd':pwd},//提交的数据
 						url:'/home/register/login',//提交的地址
 						success:function(res){//返回值的方法用res接收
+							console.log(res);
 							if(res.error==1){
 								alert(res.msg);//msg在控制器里面已经定义
 							}else if(res.error == 0){

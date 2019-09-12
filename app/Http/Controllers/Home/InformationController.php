@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Home;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use DB;
 
 class InformationController extends Controller
 {
@@ -14,7 +15,10 @@ class InformationController extends Controller
      */
     public function index()
     {
-        return view('home.information.index');
+        $member = session('member');//获取session的数据
+        $id = $member->id;                  //拿到session的id
+        $member = DB::table('members')->where('id',$id)->first();   //从数据库拿到一条数据
+        return view('home.information.index',['member'=>$member]);      //在页面显示
     }
 
     /**
