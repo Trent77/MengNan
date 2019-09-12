@@ -1,74 +1,89 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
- <head> 
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" /> 
-  <title>猛男的商城网</title> 
-  <link href="/home/AmazeUI-2.4.2/assets/css/amazeui.css" rel="stylesheet" type="text/css" /> 
-  <link href="/home/AmazeUI-2.4.2/assets/css/admin.css" rel="stylesheet" type="text/css" /> 
-  <link href="/home/basic/css/demo.css" rel="stylesheet" type="text/css" /> 
-  <link href="/home/css/hmstyle.css" rel="stylesheet" type="text/css" /> 
-  <link href="/home/css/skin.css" rel="stylesheet" type="text/css" /> 
-  <script src="/home/AmazeUI-2.4.2/assets/js/jquery.min.js"></script> 
-  <script src="/home/AmazeUI-2.4.2/assets/js/amazeui.min.js"></script> 
- </head> 
- <body> 
-@include('home.index.hmtop')
-  <div class="banner"> 
-   <!--轮播 --> 
-   <div class="am-slider am-slider-default scoll" data-am-flexslider="" id="demo-slider-0"> 
-    <ul class="am-slides"> 
-     <li class="banner1"><a href="introduction.html"><img src="/home/images/ad1.jpg" /></a></li> 
-     <li class="banner2"><a><img src="/home/images/ad2.jpg" /></a></li> 
-     <li class="banner3"><a><img src="/home/images/ad3.jpg" /></a></li> 
-     <li class="banner4"><a><img src="/home/images/ad4.jpg" /></a></li> 
-    </ul> 
-   </div> 
-   <div class="clear"></div> 
-  </div> 
-  <div class="shopNav"> 
-   <div class="slideall"> 
-    <div class="long-title">
-     <span class="all-goods">全部分类</span>
-    </div> 
-    @include('home.index.nav-cont')
-    <!--侧边导航 --> 
-    <div id="nav" class="navfull"> 
-     <div class="area clearfix"> 
-      <div class="category-content" id="guide_2"> 
-       <div class="category"> 
-        <ul class="category-list" id="js_climit_li"> 
-         <li class="appliance js_toggle relative"> 
-          <div class="category-info"> 
-           <h3 class="category-name b-category-name"><i><img src="/home/images/cake.png" /></i><a class="ml-22" title="点心"></a></h3> 
-           <em>&gt;</em>
-          </div> 
-          <div class="menu-item menu-in top"> 
-           <div class="area-in"> 
-            <div class="area-bg"> 
-             <div class="menu-srot"> 
-              <div class="sort-side"> 
-               <dl class="dl-sort"> 
-                <dt>
-                 <span title="蛋糕">蛋糕</span>
-                </dt> 
-                <dd>
-                 <a title="蒸蛋糕" href="#"><span>蒸蛋糕</span></a>
-                </dd> 
-               </dl> 
-              </div> 
-             </div> 
-            </div> 
-           </div> 
-          </div> <b class="arrow"></b> 
-          </li>
-        </ul> 
-       </div> 
-      </div> 
-     </div> 
-    </div> 
-    <!--轮播--> 
-    <script type="text/javascript">
+
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>猛男的商城网</title>
+
+		<link href="/home/AmazeUI-2.4.2/assets/css/amazeui.css" rel="stylesheet" type="text/css" />
+		<link href="/home/AmazeUI-2.4.2/assets/css/admin.css" rel="stylesheet" type="text/css" />
+
+		<link href="/home/basic/css/demo.css" rel="stylesheet" type="text/css" />
+
+		<link href="/home/css/hmstyle.css" rel="stylesheet" type="text/css"/>
+		<link href="/home/css/skin.css" rel="stylesheet" type="text/css" />
+		<script src="/home/AmazeUI-2.4.2/assets/js/jquery.min.js"></script>
+		<script src="/home/AmazeUI-2.4.2/assets/js/amazeui.min.js"></script>
+
+	</head>
+
+	<body>
+		@include('home.index.hmtop')
+			<div class="banner">
+                      <!--轮播 -->
+						<div class="am-slider am-slider-default scoll" data-am-flexslider id="demo-slider-0">							
+							<ul class="am-slides">
+							@foreach($banners as $k=>$v)
+								<li class="banner1"><a href=""><img title="{{$v->desc}}" src="/uploads/{{$v->url}}"></a></li>
+								@endforeach
+							</ul>							
+						</div>	
+			</div>
+			<div class="shopNav">
+				<div class="slideall">
+					
+					   <div class="long-title"><span class="all-goods">全部分类</span></div>
+					   	@include('home.index.nav-cont')			
+		        				
+						<!--侧边导航 -->
+						<div id="nav" class="navfull">
+							<div class="area clearfix">
+								<div class="category-content" id="guide_2">
+									
+									<div class="category">
+										<ul class="category-list" id="js_climit_li">
+										@foreach($cate as $row)
+											<li class="appliance js_toggle relative first">
+												<div class="category-info">
+													<h3 class="category-name b-category-name"><i><img src="/home/images/cake.png"></i><a class="ml-22" title="点心">{{$row->name}}</a></h3>
+													<em>&gt;</em></div>
+												<div class="menu-item menu-in top">
+													<div class="area-in">
+														<div class="area-bg">
+															<div class="menu-srot">
+																<div class="sort-side">
+																@foreach($row->sub as $rows)
+																	<dl class="dl-sort">
+																		<dt><span title="">{{$rows->name}}</span></dt>
+																		@foreach($rows->sub as $rowss)
+																		<dd><a title="" href="#"><span>{{$rowss->name}}</span></a></dd>
+																		@endforeach
+																	</dl>					
+																@endforeach
+
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+											<b class="arrow"></b>	
+											</li>
+											@endforeach
+										</ul>
+									</div>
+								</div>
+
+							</div>
+						</div>
+						
+						
+						<!--轮播-->
+						
+						<script type="text/javascript">
+
 							(function() {
 								$('.am-slider').flexslider();
 							});
@@ -163,8 +178,9 @@
 							setInterval('autoScroll(".demo")', 3000);
 						})
 					}
+
    </script>
-  </div> 
+  </div>
   <div class="shopMainbg"> 
    <div class="shopMain" id="shopmain"> 
     <!--今日推荐 --> 
@@ -557,8 +573,10 @@
            ZEK 原味海苔
           </div> <span class="e-price ">￥8.90</span> </a> 
         </div> </li> 
-      </ul> 
+      </ul>
+
      </div>
+
 		</div>
 		</div>
 		<!--引导 -->
@@ -601,6 +619,7 @@
 						</p>
 						<p class="cart_num ">0</p>
 					</div>
+
     	</div> 
    </div> 
    <!--引导 --> 
@@ -651,6 +670,7 @@
     </div> 
    </div> 
    <script>
+
 			window.jQuery || document.write('<script src="/home/basic/js/jquery.min.js "><\/script>');
 		</script> 
    <script type="text/javascript " src="/home/basic/js/quick_links.js "></script>  
