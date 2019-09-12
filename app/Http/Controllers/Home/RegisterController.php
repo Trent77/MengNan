@@ -64,8 +64,6 @@ class RegisterController extends Controller
         unset($data['pwd2']);
 
         $data['created_at'] = date('Y-m-d H:i:s');
-
-
         $res = DB::table('members')->insert($data);
         if($res === false){
            return back()->with('error','添加失败');

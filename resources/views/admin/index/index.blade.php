@@ -34,18 +34,12 @@
   <h2><span class="icon-user"></span>会员管理</h2>
     <ul style="display:block">
       <li><a href="/admin/member/index" target="right"><span class="icon-caret-right"></span>会员管理</a></li>
-     <li><a href="/admin/category/index" target="right"><span class="icon-caret-right"></span>类别管理</a></li>
     <li><a href="/admin/order/index" target="right"><span class="icon-caret-right"></span>订单管理</a></li>
-    </ul>
-  <h2><span class="icon-user"></span>分类管理</h2>
-    <ul style="display:block">
-      <li><a href="/admin/soft/index" target="right"><span class="icon-caret-right"></span>分类管理</a></li>
     </ul>
   <h2><span class="icon-pencil-square-o"></span>商品管理</h2>
     <ul>
       <li><a href="/admin/good/index" target="right"><span class="icon-caret-right"></span>商品信息</a></li>
       <li><a href="/admin/store/index" target="right"><span class="icon-caret-right"></span>库存管理</a></li>
-      <li><a href="/admin/good/write" target="right"><span class="icon-caret-right"></span>商品详情</a></li>
       <!-- <li><a href="/admin/spec/index" target="right"><span class="icon-caret-right"></span>商品规格</a></li> -->
     </ul>
     <h2><span class="icon-user"></span>轮播图管理</h2>
@@ -56,7 +50,7 @@
     <ul style="display:block">
       <li><a href="/admin/article/index" target="right"><span class="icon-caret-right"></span>文章列表</a></li>
     </ul>
-    <h2><span class="icon-user"></span>无限极分类管理</h2>
+    <h2><span class="icon-user"></span>分类管理</h2>
     <ul style="display:block">
       <li><a href="/admin/cate/index" target="right"><span class="icon-caret-right"></span>分类管理</a></li>
     </ul>

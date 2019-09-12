@@ -21,10 +21,8 @@ class GoodController extends Controller
     }
     //商品添加页面
     public function create(){
-      $soft = new Soft;
-      //获取所有分类
-      $data = $soft::all();
-      return view('admin.good.create',['soft'=>$data]);
+      $cate = DB::table('cates')->where('pid',2)->get();
+      return view('admin.good.create',['cate'=>$cate]);
     }
     //处理添加商品
     public function store(Request $request){

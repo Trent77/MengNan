@@ -193,6 +193,9 @@ Route::group(['namespace'=>'Admin','prefix'=>'admin','middleware'=>'login'],func
 	Route::get('cate/index','CateController@index');
 	Route::get('cate/create','CateController@create');
 	Route::post('cate/store','CateController@store');
+	Route::get('cate/destroy/{id}','CateController@destroy');
+	Route::get('cate/edit/{id}','CateController@edit');
+	Route::post('cate/update/{id}','CateController@update');
 });
 
 //=================================================================

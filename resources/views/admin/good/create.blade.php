@@ -38,7 +38,7 @@
         </div>
         <div class="field">
           <select class="input" id="i2" style="width:25%;">
-              @foreach($soft as $k=>$v)
+              @foreach($cate as $k=>$v)
               <option value="{{$v->id}}">{{$v->name}}</option>
               @endforeach
           </select>

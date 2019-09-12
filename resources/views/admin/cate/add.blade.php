@@ -12,20 +12,7 @@
 <script src="/admin/js/pintuer.js"></script>
 </head>
 <body>
-<div class="panel admin-panel">
-  <div class="panel-head"><strong class="icon-reorder"> 内容列表</strong></div>
-  <div class="padding border-bottom">  
-  <button type="button" class="button border-yellow" onclick="window.location.href='#add'"><a href="/admin/cate/create" target="right"><span class="icon-plus-square-o"> 添加分类</span></a></button>
-  </div>
 
-</div>
-<script type="text/javascript">
-function del(id,mid){
-  if(confirm("您确定要删除吗?")){
-  
-  }
-}
-</script>
 <div class="panel admin-panel margin-top" id="add">
   <div class="panel-head"><strong><span class="icon-pencil-square-o"></span> 增加内容</strong></div>
   <div class="body-content">
