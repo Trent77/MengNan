@@ -10,6 +10,7 @@
   <link href="/home/basic/css/demo.css" rel="stylesheet" type="text/css" /> 
   <link type="text/css" href="/home/css/optstyle.css" rel="stylesheet" /> 
   <link type="text/css" href="/home/css/style.css" rel="stylesheet" /> 
+  <link type="text/css" href="/admin/css/pintuer.css" rel="stylesheet" /> 
   <script type="text/javascript" src="/home/basic/js/jquery-1.7.min.js"></script> 
   <script type="text/javascript" src="/home/basic/js/quick_links.js"></script> 
   <script type="text/javascript" src="/home/AmazeUI-2.4.2/assets/js/amazeui.js"></script> 
@@ -18,7 +19,6 @@
   <script type="text/javascript" src="/home/js/list.js"></script> 
  </head> 
  <body> 
-  @include('home.index.hmtop')
    <!--分类--> 
    <div class="nav-table"> 
     <div class="long-title">
@@ -84,16 +84,17 @@
        <a href=""><img src="{{$photo_mini[0]->photo_mini}}" alt="细节展示放大镜特效" rel="/home/images/01.jpg" class="jqzoom" /></a> 
       </div> 
       <ul class="tb-thumb" id="thumblist"> 
-      
       @foreach($photo_mini as $v)
-      <li class="tb-selected"> 
+      <li> 
         <div class="tb-pic tb-s40"> 
          <a href="#"><img src="{{$v->photo_mini}}" mid="{{$v->photo_mini}}" big="{{$v->photo_mini}}" /></a> 
         </div>
       </li>
       @endforeach 
-        
       </ul> 
+      <script>
+      $('#thumblist').find('li').eq(0).addClass('tb-selected');
+      </script>
      </div> 
      <div class="clear"></div> 
     </div> 
@@ -148,19 +149,37 @@
           <a href="javascript:;" title="关闭" class="close">&times;</a> 
          </div> 
          <div class="theme-popbod dform"> 
-          <form class="theme-signin" name="loginform" action="" method="post"> 
+          <form class="theme-signin" name="loginform" action="/home/shopcart/add" method="post">
+          {{csrf_field()}}
+          <input type="hidden" id="key_name" name="key_name" value="">
+          <input type="hidden" id="num" name="num" value="">
            <div class="theme-signin-left"> 
             <div class="theme-options"> 
              <div class="cart-title">
-              口味
+              规格
              </div> 
              <ul id="key"> 
               @foreach($sku as $k=>$v)
-              <li class="sku-line " onclick="xxoo({{$v->id}})" >{{$v->key_name}}<i></i></li>
+              <li name="key_name" value="{{$v->key_name}}" class="sku-line" onclick="xxoo({{$v->id}})">{{$v->key_name}}
+              </li>
               @endforeach 
              </ul> 
-            </div> 
+            </div>
+            <div class="form-group">
+    @if (count($errors) > 0)
+        <div class="alert alert-danger">
+            <ul style="color:red;">
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+            </ul>
+        </div>
+    @endif
+</div>
             <script>
+              //默认选中第一个规格 行不通!! 因为数据还是得通过ajax获取
+              // $($('#key').find('li').eq(0)).addClass("selected");
+            
               // 知道当前点击的规格
               function xxoo($id){
                  $.ajaxSetup({ 
@@ -174,6 +193,10 @@
                   type:'post',
                   dataType:'json',
                   success:function(res){
+                     key_name = $($('#key').find('li.selected')).text();
+                     num = $('#text_box').val();
+                     $('#key_name').val(key_name);
+                     $('#num').val(num);
                     $('#all_price').text(res.price);
                     $('#store_x').text(res.store_x);
                     $('#text_box').attr('max',res.store_x);
@@ -209,7 +232,6 @@
              <span id="Stock" class="tb-hidden">库存<span class="stock">1000</span>件</span> 
             </div> 
            </div> 
-          </form> 
          </div> 
         </div> 
        </dd> 
@@ -221,16 +243,29 @@
        <a href="home.html"><span class="am-icon-home am-icon-fw">首页</span></a> 
        <a><span class="am-icon-heart am-icon-fw">收藏</span></a> 
       </div> 
-      <li> 
+<!--       <li> 
        <div class="clearfix tb-btn tb-btn-buy theme-login"> 
         <a id="LikBuy" title="点此按钮到下一步确认购买信息" href="#">立即购买</a> 
-       </div> </li> 
+       </div> </li>  -->
       <li> 
-       <div class="clearfix tb-btn tb-btn-basket theme-login"> 
-        <a id="LikBasket" title="加入购物车" href="#"><i></i>加入购物车</a> 
-       </div> </li> 
+          <button class="button border-dot">加入购物车</button>
+      </li> 
+       </form> 
      </div> 
     </div> 
+    <script>
+      $('#zeng').on('click',function(){
+        //拿到选中的key_name
+        key_name = $($('#key').find('li.selected')).text();
+        if(key_name == ''){
+          alert('请选择规格');
+          return;
+        }
+        //拿到选中的数量
+        num = $('#text_box').val();
+        window.location.href='/home/good/shopcart/'+key_name+'/'+num;
+      })
+    </script>
     <div class="clear"></div> 
    </div> 
    <div class="clear"></div> 

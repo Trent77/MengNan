@@ -56,12 +56,16 @@
 
 //搜索
 function changesearch(){
+<<<<<<< Updated upstream
 	var keywords = $('#keywords').val();
 	$.ajax({
 		type:'get',
 		url:'/admin/user/index',
 		data:{'keywords':keywords},
 	})
+=======
+
+>>>>>>> Stashed changes
 }
 
 //单个删除

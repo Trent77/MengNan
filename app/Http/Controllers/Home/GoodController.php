@@ -23,4 +23,6 @@ class GoodController extends Controller
     	$data = DB::table('sku')->where('id',$id)->first();
     	echo json_encode($data);
     }
+
+   
 }

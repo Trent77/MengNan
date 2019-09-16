@@ -1,5 +1,5 @@
 <script src="/home/AmazeUI-2.4.2/assets/js/jquery.min.js"></script>
-<script src="/home/AmazeUI-2.4.2/assets/js/amazeui.min.js"></script>
+<script src="/home/AmazeUI-2.4.2/assets/js/amazeui.js"></script>
 <div class="hmtop">
    <!--顶部导航条 -->
    <div class="am-container header">

@@ -167,7 +167,6 @@ Route::group(['namespace'=>'Admin','prefix'=>'admin','middleware'=>'login'],func
     //删除sku
     Route::post('item/del','ItemController@del');
 
-
     //库存管理
     Route::get('store/index','StoreController@index');
     //库存修改
@@ -216,10 +215,11 @@ Route::group(['namespace'=>'Home','prefix'=>'home'],function(){
 	Route::get('good/show/{id}','GoodController@show');
 	//通过规格查找价格
 	Route::post('good/store','GoodController@store');
+
+
+	//购物车
+	Route::post('shopcart/add','ShopCartController@add');
 	
-
-
-
 	//个人资料
 	Route::get('information/index','InformationController@index');
 
