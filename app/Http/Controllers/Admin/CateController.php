@@ -47,7 +47,14 @@ class CateController extends Controller
     public function create()
     {
         $cate = self::getCates();
-        return view('admin/cate/add',['cate'=>$cate]);
+        $path = [];
+          for ($i=0; $i < count($cate) ; $i++) {
+            // 用数组放所有判断结果为3级分类 的数组通过 分类ID=>分类名字 的 键值对   
+              if(count(explode(',',$cate[$i]->path)) < 3){
+                  $path[$cate[$i]->id][] = $cate[$i]->name;
+              };
+          }
+        return view('admin/cate/add',['path'=>$path]);
     }
 
     /**

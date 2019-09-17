@@ -46,9 +46,13 @@ class ShopCartController extends Controller
 		        	]);
 
 		if($result){
-			return view('home/shopcart/index');
+            return redirect()->action('Home\ShopCartController@index');
 		} 	
         
+    }
+
+    public function index(){
+    	return view('home.shopcart.index');
     }
 		
     

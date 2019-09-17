@@ -34,8 +34,8 @@
         <div class="field">
           <select id="" name="pid">
             <option value="0">--请选择--</option>
-            @foreach($cate as $k=>$v)
-              <option value="{{$v->id}}">{{$v->name}}</option> 
+            @foreach($path as $k=>$v)
+              <option value="{{$k}}">{{$v[0]}}</option> 
             @endforeach         
           </select>
         </div>

@@ -21,8 +21,16 @@ class GoodController extends Controller
     }
     //商品添加页面
     public function create(){
-      $cate = DB::table('cates')->where('pid',2)->get();
-      return view('admin.good.create',['cate'=>$cate]);
+      $cate = DB::table('cates')->get();
+      $path = [];
+      for ($i=0; $i < count($cate) ; $i++) {
+        // 用数组放所有判断结果为3级分类 的数组通过 分类ID=>分类名字 的 键值对   
+          if(count(explode(',',$cate[$i]->path)) == 3){
+              $path[$cate[$i]->id][] = $cate[$i]->name;
+          };
+      }
+      
+      return view('admin.good.create',['path'=>$path]);
     }
     //处理添加商品
     public function store(Request $request){

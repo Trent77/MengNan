@@ -217,8 +217,10 @@ Route::group(['namespace'=>'Home','prefix'=>'home'],function(){
 	Route::post('good/store','GoodController@store');
 
 
-	//购物车
+	//购物车添加
 	Route::post('shopcart/add','ShopCartController@add');
+	//购物车展示
+	Route::get('shopcart/index','ShopCartController@index');
 	
 	//个人资料
 	Route::get('information/index','InformationController@index');
