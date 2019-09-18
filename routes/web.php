@@ -215,12 +215,6 @@ Route::group(['namespace'=>'Home','prefix'=>'home'],function(){
 	Route::get('good/show/{id}','GoodController@show');
 	//通过规格查找价格
 	Route::post('good/store','GoodController@store');
-
-
-	//购物车添加
-	Route::post('shopcart/add','ShopCartController@add');
-	//购物车展示
-	Route::get('shopcart/index','ShopCartController@index');
 	
 	//个人资料
 	Route::get('information/index','InformationController@index');
@@ -248,5 +242,16 @@ Route::group(['namespace'=>'Home','prefix'=>'home','middleware'=>'homelogin'],fu
 
     // 个人中心展示
     Route::get('myself/index','MyselfController@index');
+    
+    //购物车添加
+	Route::post('shopcart/add','ShopCartController@add');
+	//购物车展示
+	Route::get('shopcart/index','ShopCartController@index');
+	//购物车删除
+	Route::get('shopcart/del','ShopCartController@del');
+	//处理购物车
+	Route::get('shopcart/store','ShopCartController@store');
+	//结算完成页面
+	Route::get('shopcart/end','ShopCartController@end');
 
 });
