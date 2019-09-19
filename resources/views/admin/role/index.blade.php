@@ -42,7 +42,7 @@
         <th>操作</th>
       </tr>
       <volist name="list" id="vo">
-        @foreach($soft as $k=>$v)
+        @foreach($role as $k=>$v)
         <tr>
           <td style="text-align:left; padding-left:20px;"><input type="checkbox" name="id[]" value="" />
         </td>
@@ -52,9 +52,7 @@
           <td><div class="button-group"> <a  class="button border-main" href="/admin/soft/add/{{$v->id}}"><span class="icon-edit"></span> 修改</a> <a  class="button border-red" href="/admin/soft/del/{{$v->id}}"><span class="icon-trash-o"></span> 删除</a> </div></td>
         </tr>
         @endforeach
-      <tr>
-      </tr>
-		@endforeach
+     
     </table>
  	{{$role->links()}}
   </div>

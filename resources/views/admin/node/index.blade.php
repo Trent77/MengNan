@@ -16,7 +16,6 @@
 <form method="post" action="" id="listform">
     {{csrf_field()}}
   <div class="panel admin-panel">
-<<<<<<< Updated upstream:resources/views/admin/node/index.blade.php
     <div class="panel-head"><strong class="icon-reorder">权限列表</strong> <a href="" style="float:right; display:none;">添加字段</a></div>
     @if ($errors->any())
 	    <div class="alert alert-danger">
@@ -38,7 +37,6 @@
 	<!-- </form> -->
     <table class="table table-hover text-center">
       <tr>
-<<<<<<< Updated upstream:resources/views/admin/node/index.blade.php
         <th>ID</th>
         <th>权限名称</th>
         <th>控制器</th>

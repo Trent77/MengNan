@@ -215,6 +215,9 @@ Route::group(['namespace'=>'Home','prefix'=>'home'],function(){
 	Route::get('good/show/{id}','GoodController@show');
 	//通过规格查找价格
 	Route::post('good/store','GoodController@store');
+
+	//商品列表页
+	Route::get('search/index/{id}','SearchController@index');
 	
 	//个人资料
 	Route::get('information/index','InformationController@index');

@@ -59,7 +59,7 @@
 																	<dl class="dl-sort">
 																		<dt><span title="">{{$rows->name}}</span></dt>
 																		@foreach($rows->sub as $rowss)
-																		<dd><a title="" href="#"><span>{{$rowss->name}}</span></a></dd>
+																		<dd><a title="" href="/home/search/index/{{$rowss->id}}"><span>{{$rowss->name}}</span></a></dd>
 																		@endforeach
 																	</dl>					
 																@endforeach
